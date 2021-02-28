@@ -1,0 +1,11 @@
+﻿@namespace MudBlazor.ThemeManager
+
+<div class="mud-list-item-clickable mud-ripple px-4 py-3 mud-rounded-0">
+    <MudText Typo="Typo.body2" Class="mud-float-left">@Name</MudText>
+    <div style="background:@Color;" class="px-8 py-3 mud-float-right rounded mud-elevation-25"></div>
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; }
+    [Parameter] public string Color { get; set; }
+}
