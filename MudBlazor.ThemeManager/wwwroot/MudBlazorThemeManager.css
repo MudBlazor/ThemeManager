@@ -23,10 +23,14 @@
 
 .mud-thememanager-color-expansion .mud-expand-panel {
     border: none !important;
+    color: #424242;
+    background-color: #FFFFFF;
 }
 
     .mud-thememanager-color-expansion .mud-expand-panel .mud-expand-panel-header {
         padding: 0px !important;
+        color: #424242;
+        background-color: #FFFFFF;
     }
 
 .mud-thememanager-color-input > div.mud-input.mud-input-text {
