@@ -3,6 +3,8 @@
     top: 40%;
     right: 0;
     box-shadow: 1px 1px 18px #7C4DFF;
+    color: #FFFFFF;
+    background-color: #7C4DFF;
     cursor: pointer;
 }
 
@@ -26,6 +28,15 @@
     .mud-thememanager-color-expansion .mud-expand-panel .mud-expand-panel-header {
         padding: 0px !important;
     }
+
+.mud-thememanager-color-input > div.mud-input.mud-input-text {
+    margin-top: 0px;
+}
+
+.mud-themedrawer {
+    color: rgba(0,0,0, 0.7);
+    background-color: #FFFFFF;
+}
 
 @keyframes spin {
     from {

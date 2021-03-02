@@ -5,7 +5,9 @@
 @using System.Text.RegularExpressions
 
 <div class="ml-n6 mr-n6 px-6 py-4" style="background-color:#F5F5F5;">
-    @*<MudTextField T="string" @bind-Value="ColorValue" Validation="@(new Func<string, string>(ColorMatch))" Placeholder="#Hex, rgb or rgba" Variant="Variant.Text" Margin="Margin.Dense" Class="mt-0"></MudTextField>*@
+    <div class="" style="height:54px;">
+        <MudTextField T="string" @bind-Text="ColorValue" Validation="@(new Func<string, string>(ColorMatch))" Placeholder="#Hex, rgb or rgba" Variant="Variant.Text" Margin="Margin.Dense" Class="my-0 mud-thememanager-color-input"></MudTextField>
+    </div>
     <MudText Typo="Typo.body2">Shade: <b>@Shades[Shade]</b></MudText>
     <MudSlider T="int" @bind-Value="@Shade" Min="0" Max="13" Step="1" />
     <div class="d-flex mt-1">
@@ -49,30 +51,36 @@
     [Parameter] public ThemePaletteColor ColorType { get; set; }
     [Parameter] public EventCallback<ThemeUpdatedValue> ColorValueChanged { get; set; }
 
+    MudForm colorForm;
+    bool isValidColor;
     public int Shade { get; set; }
     public string BackgroundColor { get; set; }
 
-    //string Pattern = @"#([0-9a-f]{4,8}|[0-9a-f]{6}|[0-9a-f]{3})|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)";
+    string Pattern = @"#([0-9a-f]{4,8}|[0-9a-f]{6}|[0-9a-f]{3})|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)";
 
     private string[] Shades =
-    {
+{
         "Default", "Lighten5", "Lighten4", "Lighten3","Lighten2", "Lighten1", "Darken1", "Darken2", "Darken3", "Darken4", "Accent1", "Accent2", "Accent3", "Accent4",
     };
 
-    //private string ColorMatch(string arg)
-    //{
-    //    Match match = Regex.Match(ColorValue, Pattern, RegexOptions.IgnoreCase);
-    //    if (!match.Success)
-    //        return "Invalid Color";
-    //    return null;
-    //}
+    private string ColorMatch(string arg)
+    {
+        Match match = Regex.Match(ColorValue, Pattern, RegexOptions.IgnoreCase);
+        if (!match.Success)
+            return "Invalid Color";
+        return null;
+    }
 
     async Task UpdateColor(string basecolor, int max)
     {
+        string _tempColor;
+
         if (max == 1337)
-            ColorValue = basecolor;
+            _tempColor = basecolor;
         else
-            ColorValue = GetColor(basecolor, max);
+            _tempColor = GetColor(basecolor, max);
+
+        ColorValue = _tempColor;
 
         var newPaletteColor = new ThemeUpdatedValue()
         {

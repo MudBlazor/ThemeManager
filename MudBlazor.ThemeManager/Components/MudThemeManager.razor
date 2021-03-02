@@ -1,33 +1,30 @@
 ﻿@namespace MudBlazor.ThemeManager
 
-<MudDrawer @bind-Open="@Open" Anchor="Anchor.Right" Elevation="25" Variant="@DrawerVariant.Temporary" DisableOverlay="true">
-    <MudDrawerHeader>
-        <MudText Typo="Typo.h6">Theme Manager</MudText>
-    </MudDrawerHeader>
-    <div class="px-4">
-        <MudDivider Class="mb-2" />
-        <MudText>Layout</MudText>
-        <MudSwitch @bind-Checked="@Clipped" Label="Clipped Drawer" Color="Color.Primary" />
-        <MudDivider Class="my-2" />
-        <MudText>Theme</MudText>
-        <MudSwitch @bind-Checked="@Dark" Label="Dark" Color="Color.Primary" />
-        <MudDivider Class="my-2" />
-        <MudText>RTL</MudText>
-        <MudSwitch @bind-Checked="@Rtl" Label="Right to Left" Color="Color.Primary" />
-        <MudDivider Class="mt-2 mb-4" />
-        <MudText GutterBottom="true">Custom Settings</MudText>
-    </div>
-    <div>
-        <MudSelect T="string" Label="Font" @bind-Value="@Font" Class="mx-5">
-            <MudSelectItem Value="@("Roboto")" />
-            <MudSelectItem Value="@("Montserrat")" />
-            <MudSelectItem Value="@("Segoe UI")" />
-            <MudSelectItem Value="@("Avenir")" />
+<MudDrawer @bind-Open="@Open" Anchor="Anchor.Right" Elevation="25" Variant="@DrawerVariant.Temporary" DisableOverlay="true" Class="mud-themedrawer">
+    <div class="pt-4 px-4">
+        <MudText Typo="Typo.h6">Theme Presets</MudText>
+        <MudSelect T="string" @bind-Value="@ThemePresets" Disabled="true" DisableUnderLine="true">
+            <MudSelectItem Value="@("Not Implemented")" />
         </MudSelect>
-        <MudSlider Step="1" Min="0" Max="20" T="int" @bind-Value="@BorderRadius" Class="my-5 px-5"><MudText Typo="Typo.body2">Border Radius: <b>@($"{BorderRadius}px")</b></MudText></MudSlider>
-
-        <MudText Typo="Typo.body2" GutterBottom="true" Class="px-4"><b>Theme Colors</b></MudText>
-        <MudExpansionPanels Elevation="0" Square="true" Class="theme-color-expansion mt-4">
+    </div>
+    <MudDivider Class="my-2" />
+    <div class="pt-2 px-4">
+        <MudText Typo="Typo.h6" Class="mb-4">Custom Settings</MudText>
+        <MudSelect Label="Drawer ClipMode" T="DrawerClipMode" Value="@Theme.DrawerClipMode" ValueChanged="OnDrawerClipMode" Dense="true" DisableUnderLine="true" Class="my-2">
+            <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Never">Never</MudSelectItem>
+            <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Docked">Docked</MudSelectItem>
+            <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Always">Always</MudSelectItem>
+        </MudSelect>
+        <MudSelect Label="Font Family" T="string" Value="@Theme.FontFamily" ValueChanged="OnFontFamily" Dense="true" DisableUnderLine="true" Class="my-2">
+            <MudSelectItem T="string" Value="@("Roboto")" />
+            <MudSelectItem T="string" Value="@("Montserrat")" />
+            <MudSelectItem T="string" Value="@("Segoe UI")" />
+        </MudSelect>
+        <MudSlider Step="1" Min="0" Max="20" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadius" Class="mt-3 mb-5"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
+    </div>
+    <div class="pt-2">
+        <MudText Typo="Typo.body2" GutterBottom="true" Class="mx-4"><b>Theme Colors</b></MudText>
+        <MudExpansionPanels Elevation="0" Square="true" Class="mud-thememanager-color-expansion mt-4">
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
                     <MudThemeManagerColorItem Name="Primary" Color="@_customTheme.Palette.Primary" />
@@ -94,8 +91,8 @@
             </MudExpansionPanel>
         </MudExpansionPanels>
 
-        <MudText Typo="Typo.body2" GutterBottom="true" Class="px-4 pt-4"><b>Components</b></MudText>
-        <MudExpansionPanels Elevation="0" Square="true" Class="theme-color-expansion mt-4">
+        <MudText Typo="Typo.body2" GutterBottom="true" Class="pt-4 mx-4"><b>Components</b></MudText>
+        <MudExpansionPanels Elevation="0" Square="true" Class="mud-thememanager-color-expansion mt-4">
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
                     <MudThemeManagerColorItem Name="Appbar Text" Color="@_customTheme.Palette.AppbarText" />
@@ -138,8 +135,8 @@
             </MudExpansionPanel>
         </MudExpansionPanels>
 
-        <MudText Typo="Typo.body2" GutterBottom="true" Class="px-4 pt-4"><b>General</b></MudText>
-        <MudExpansionPanels Elevation="0" Square="true" Class="theme-color-expansion mt-4">
+        <MudText Typo="Typo.body2" GutterBottom="true" Class="pt-4 mx-4"><b>General</b></MudText>
+        <MudExpansionPanels Elevation="0" Square="true" Class="mud-thememanager-color-expansion mt-4">
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
                     <MudThemeManagerColorItem Name="Surface" Color="@_customTheme.Palette.Surface" />
@@ -199,8 +196,8 @@
         </MudExpansionPanels>
 
 
-        <MudText Typo="Typo.body2" GutterBottom="true" Class="px-4 pt-4"><b>Text & Actions</b></MudText>
-        <MudExpansionPanels Elevation="0" Square="true" Class="theme-color-expansion mt-4">
+        <MudText Typo="Typo.body2" GutterBottom="true" Class="pt-4"><b>Text & Actions</b></MudText>
+        <MudExpansionPanels Elevation="0" Square="true" Class="mud-thememanager-color-expansion mt-4">
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
                     <MudThemeManagerColorItem Name="Text Primary" Color="@_customTheme.Palette.TextPrimary" />
@@ -235,7 +232,7 @@
             </MudExpansionPanel>
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
-                    <MudThemeManagerColorItem Name="Action Disabled" Color="@_customTheme.Palette.ActionDisabled" />
+                    <MudThemeManagerColorItem Name="Disabled" Color="@_customTheme.Palette.ActionDisabled" />
                 </TitleContent>
                 <ChildContent>
                     <MudThemeManagerColorPicker ColorType="ThemePaletteColor.ActionDisabled" ColorValue="@_customTheme.Palette.ActionDisabled" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
@@ -243,7 +240,7 @@
             </MudExpansionPanel>
             <MudExpansionPanel HideIcon="true">
                 <TitleContent>
-                    <MudThemeManagerColorItem Name="Action Disabled BG" Color="@_customTheme.Palette.ActionDisabledBackground" />
+                    <MudThemeManagerColorItem Name="Disabled BG" Color="@_customTheme.Palette.ActionDisabledBackground" />
                 </TitleContent>
                 <ChildContent>
                     <MudThemeManagerColorPicker ColorType="ThemePaletteColor.ActionDisabledBackground" ColorValue="@_customTheme.Palette.ActionDisabledBackground" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
