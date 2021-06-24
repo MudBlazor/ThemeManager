@@ -7,7 +7,7 @@
   <PropertyGroup>
     <Title>MudBlazor ThemeManager</Title>
     <PackageId>MudBlazor.ThemeManager</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Nuget.png</PackageIcon>
     <Company>MudBlazor</Company>
