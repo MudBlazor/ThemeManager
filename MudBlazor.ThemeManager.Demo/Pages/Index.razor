@@ -1,14 +1,29 @@
 ﻿@page "/"
 
-<MudGrid>
+<MudGrid Spacing="6">
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
+            <MudButton Variant="Variant.Filled" Class="mx-4">Default</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mx-4">Primary</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="true" Class="mx-2">Disabled</MudButton>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
+            <MudButton Variant="Variant.Text" Class="mx-2">Default</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Primary" Class="mx-2">Primary</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
+            <MudButton Variant="Variant.Text" Disabled="true" Class="mx-2">Disabled</MudButton>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="12" md="4">
-        <MudPaper  Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
+            <MudButton Variant="Variant.Outlined" Class="mx-2">Default</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Primary" Class="mx-2">Primary</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
+            <MudButton Variant="Variant.Outlined" Disabled="true" Class="mx-2">Disabled</MudButton>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6">
         <MudGrid>
@@ -21,13 +36,59 @@
         </MudGrid>
     </MudItem>
     <MudItem xs="12" sm="6">
-        <MudPaper Class="pa-4" Style="height: 100%"></MudPaper>
+        <MudPaper Class="pa-4" Style="height: 100%">
+            <MudGrid>
+                <MudItem md="4" xs="12">
+                    <MudAlert Severity="Severity.Normal" Class="mb-2 mt-3">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Class="my-2">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Class="my-2">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Class="my-2">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Class="my-2">Error Square</MudAlert>
+                </MudItem>
+                <MudItem md="4" xs="12">
+                    <MudAlert Severity="Severity.Normal" Variant="Variant.Outlined" Class="my-2">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="my-2">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Variant="Variant.Outlined" Class="my-2">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined" Class="my-2">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Variant="Variant.Outlined" Class="my-2">Error Square</MudAlert>
+                </MudItem>
+                <MudItem md="4" xs="12">
+                    <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Class="mb-2 mt-3">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Class="my-2">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-2">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="my-2">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-2">Error Square</MudAlert>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="pa-4 d-flex justify-space-around flex-wrap" Style="height: 200px;">
+            <MudBadge Content="3" Color="Color.Primary" Overlap="true" Class="mx-6 my-4">
+                <MudIcon Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
+            </MudBadge>
+            <MudBadge Content="100" Color="Color.Primary" Overlap="true" Class="mx-6 my-4">
+                <MudIcon Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
+            </MudBadge>
+            <MudBadge Icon="@Icons.Material.Filled.Lock" Color="Color.Error" Overlap="true" Bordered="true" Class="mx-6 my-4">
+                <MudButton Color="Color.Error" Variant="Variant.Filled" DisableElevation="true">Security Issues</MudButton>
+            </MudBadge>
+            <MudBadge Dot="true" Color="Color.Info" Class="mx-6 my-4">
+                <MudText>Bug Reports</MudText>
+            </MudBadge>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="pa-4 d-flex justify-space-around flex-wrap" Style="height: 200px;">
+            <MudChip>Default</MudChip>
+            <MudChip Color="Color.Primary">Primary</MudChip>
+            <MudChip Color="Color.Secondary">Secondary</MudChip>
+            <MudChip Color="Color.Info">Info</MudChip>
+            <MudChip Color="Color.Success">Success</MudChip>
+            <MudChip Color="Color.Warning">Warning</MudChip>
+            <MudChip Color="Color.Error">Error</MudChip>
+            <MudChip Color="Color.Dark">Dark</MudChip>
+        </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="12" md="4">
         <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
