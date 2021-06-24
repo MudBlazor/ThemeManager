@@ -20,7 +20,6 @@
             <MudSelectItem T="string" Value="@("Montserrat")" />
             <MudSelectItem T="string" Value="@("Segoe UI")" />
             <MudSelectItem T="string" Value="@("Ubuntu")" />
-            <MudSelectItem T="string" Value="@("Big Shoulders Stencil Display")">Big Shoulders</MudSelectItem>
         </MudSelect>
         <MudSlider Step="1" Min="0" Max="30" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadius" Class="mt-3"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
         <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.AppBarElevation" ValueChanged="OnAppBarElevation"><MudText Typo="Typo.body2">AppBar Elevation: <b>@($"{@Theme.AppBarElevation}")</b></MudText></MudSlider>
