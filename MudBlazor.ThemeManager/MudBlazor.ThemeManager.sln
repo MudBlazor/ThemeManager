@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBlazor.ThemeManager", "MudBlazor.ThemeManager.csproj", "{0AA742CB-2DF4-4212-AAA3-C328E6997394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazor.ThemeManager.Demo", "..\MudBlazor.ThemeManager.Demo\MudBlazor.ThemeManager.Demo.csproj", "{DE906930-1DAB-49F9-91AC-B12EBC02306F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MudBlazor.ThemeManager.TestApp", "..\MudBlazor.ThemeManager.TestApp\MudBlazor.ThemeManager.TestApp.csproj", "{A6CA67E7-6578-416D-8F34-5474E7ABE61C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{0AA742CB-2DF4-4212-AAA3-C328E6997394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA742CB-2DF4-4212-AAA3-C328E6997394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA742CB-2DF4-4212-AAA3-C328E6997394}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE906930-1DAB-49F9-91AC-B12EBC02306F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE906930-1DAB-49F9-91AC-B12EBC02306F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE906930-1DAB-49F9-91AC-B12EBC02306F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE906930-1DAB-49F9-91AC-B12EBC02306F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CA67E7-6578-416D-8F34-5474E7ABE61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CA67E7-6578-416D-8F34-5474E7ABE61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CA67E7-6578-416D-8F34-5474E7ABE61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CA67E7-6578-416D-8F34-5474E7ABE61C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
