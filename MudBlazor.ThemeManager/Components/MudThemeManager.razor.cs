@@ -1,12 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
 namespace MudBlazor.ThemeManager
 {
     public partial class MudThemeManager
     {
+        public static MudTheme _currentTheme { get; set; }
+        public static MudTheme _customTheme { get; set; }
+        public static MudTheme _defaultTheme { get; set; } = new MudTheme();
+
         public string ThemePresets { get; set; } = "Not Implemented";
-        public int BorderRadius { get; set; } = 3;
 
         [Parameter] public bool Open { get; set; }
         [Parameter] public EventCallback<bool> OpenChanged { get; set; }
@@ -22,6 +26,7 @@ namespace MudBlazor.ThemeManager
         async Task UpdateThemeChanged()
         {
             await ThemeChanged.InvokeAsync(Theme);
+            StateHasChanged();
         }
 
         protected override void OnInitialized()
@@ -48,6 +53,33 @@ namespace MudBlazor.ThemeManager
 
             UpdateThemeChanged();
         }
+
+        void OnDefaultElevation(int value)
+        {
+            Theme.DefaultElevation = value;
+            var newDefaultElevation = _customTheme.Shadows;
+
+            string newElevation = newDefaultElevation.Elevation[value].ToString();
+            newDefaultElevation.Elevation[1] = newElevation;
+
+            _customTheme.Shadows.Elevation[1] = newElevation;
+            _currentTheme = _customTheme;
+
+            UpdateThemeChanged();
+        }
+
+        void OnAppBarElevation(int value)
+        {
+            Theme.AppBarElevation = value;
+            UpdateThemeChanged();
+        }
+
+        void OnDrawerElevation(int value)
+        {
+            Theme.DrawerElevation = value;
+            UpdateThemeChanged();
+        }
+
 
         void OnFontFamily(string value)
         {
@@ -166,9 +198,5 @@ namespace MudBlazor.ThemeManager
 
             UpdateThemeChanged();
         }
-        
-        public static MudTheme _currentTheme { get; set; }
-        public static MudTheme _customTheme { get; set; }
-        public static MudTheme _defaultTheme { get; set; } = new MudTheme();
     }
 }

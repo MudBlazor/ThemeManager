@@ -5,9 +5,11 @@ namespace MudBlazor.ThemeManager
     {
         public MudTheme Theme { get; set; } = new MudTheme();
         public bool RTL { get; set; }
-        public int AppBarElevation { get; set; }
-        public string FontFamily { get; set; }
-        public int DefaultBorderRadius { get; set; }
-        public DrawerClipMode DrawerClipMode { get; set; }
+        public string FontFamily { get; set; } = "Roboto";
+        public int DefaultBorderRadius { get; set; } = 4;
+        public int DefaultElevation { get; set; } = 1;
+        public int AppBarElevation { get; set; } = 25;
+        public int DrawerElevation { get; set; } = 2;
+        public DrawerClipMode DrawerClipMode { get; set; } = DrawerClipMode.Never;
     }
 }
