@@ -15,7 +15,7 @@ Blazor Theme Manager component for MudBlazor library. Can be used live or during
 - [AdminDashbord Template](https://templates.mudblazor.com/)
 
 ## Workflow
-
+![caption](content/WorkFlow_DarkTheme.webp)
 
 ## Prerequisites
 - [MudBlazor](https://mudblazor.com/) Installed and configurated.
