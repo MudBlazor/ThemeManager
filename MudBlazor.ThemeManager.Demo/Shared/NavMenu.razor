@@ -1,0 +1,19 @@
+﻿@inject NavigationManager NavigationManager
+
+<MudNavMenu Class="mt-4">
+    <MudNavLink Match="NavLinkMatch.All" Href="/">Dashboard</MudNavLink>
+    <MudNavLink Href="/dummy" OnClick="NavigateOnlyToHome">Servers</MudNavLink>
+    <MudNavLink Href="/dummy" OnClick="NavigateOnlyToHome" Disabled="true">Billing</MudNavLink>
+    <MudNavGroup Title="Settings" Expanded="true">
+        <MudNavLink Href="/dummy" OnClick="NavigateOnlyToHome">Users</MudNavLink>
+        <MudNavLink Href="/dummy" OnClick="NavigateOnlyToHome">Security</MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="/dummy" OnClick="NavigateOnlyToHome">About</MudNavLink>
+</MudNavMenu>
+
+@code {
+    private void NavigateOnlyToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+} 
