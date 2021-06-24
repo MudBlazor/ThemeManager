@@ -22,10 +22,10 @@
             <MudSelectItem T="string" Value="@("Ubuntu")" />
             <MudSelectItem T="string" Value="@("Big Shoulders Stencil Display")">Big Shoulders</MudSelectItem>
         </MudSelect>
-        <MudSlider Step="1" Min="0" Max="20" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadius" Class="mt-3"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
-        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.AppBarElevation" ValueChanged="OnAppBarElevation" Class="mt-3"><MudText Typo="Typo.body2">AppBar Elevation: <b>@($"{@Theme.AppBarElevation}")</b></MudText></MudSlider>
-        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.DrawerElevation" ValueChanged="OnDrawerElevation" Class="mt-3"><MudText Typo="Typo.body2">Drawer Elevation: <b>@($"{@Theme.DrawerElevation}")</b></MudText></MudSlider>
-        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.DefaultElevation" ValueChanged="OnDefaultElevation" Class="mt-3"><MudText Typo="Typo.body2">Default Elevation: <b>@($"{@Theme.DefaultElevation}")</b></MudText></MudSlider>
+        <MudSlider Step="1" Min="0" Max="30" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadius" Class="mt-3"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
+        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.AppBarElevation" ValueChanged="OnAppBarElevation"><MudText Typo="Typo.body2">AppBar Elevation: <b>@($"{@Theme.AppBarElevation}")</b></MudText></MudSlider>
+        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.DrawerElevation" ValueChanged="OnDrawerElevation"><MudText Typo="Typo.body2">Drawer Elevation: <b>@($"{@Theme.DrawerElevation}")</b></MudText></MudSlider>
+        <MudSlider Step="1" Min="0" Max="24" T="int" Value="@Theme.DefaultElevation" ValueChanged="OnDefaultElevation"><MudText Typo="Typo.body2">Default Elevation: <b>@($"{@Theme.DefaultElevation}")</b></MudText></MudSlider>
     </div>
     <div class="pt-6">
         <MudText Typo="Typo.body2" GutterBottom="true" Class="mx-4"><b>Theme Colors</b></MudText>
