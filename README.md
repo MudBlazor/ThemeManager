@@ -8,11 +8,13 @@
 
 Blazor Theme Manager component for MudBlazor library. Can be used live or during development to fast and easy try out different theme settings.
 
-**This component is not production ready, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
+**This component is not suitable for prod applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
 
-## Demo and Online Examples
+## Online Demo & Examples
 - [MudBlazor Theme Manager](https://thememanager.mudblazor.com/)
 - [AdminDashbord Template](https://templates.mudblazor.com/)
+
+## Workflow
 
 
 ## Prerequisites
@@ -64,5 +66,3 @@ Connect the ThemeManagerTheme with `MudThemeProvider` to control all the theme c
 <MudAppBar Elevation="_themeManager.AppBarElevation">
 <MudDrawer @bind-Open="_drawerOpen" ClipMode="_themeManager.DrawerClipMode" Elevation="_themeManager.DrawerElevation">
 ```
-
-### WorkFlow
