@@ -2,68 +2,81 @@
 
 <MudGrid Spacing="6">
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
-            <MudButton Variant="Variant.Filled" Class="mx-4">Default</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mx-4">Primary</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
-            <MudButton Variant="Variant.Filled" Disabled="true" Class="mx-2">Disabled</MudButton>
+        <MudPaper Class="pa-4 d-flex justify-center flex-wrap">
+            <MudButton Variant="Variant.Filled" Class="ma-4">Default</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ma-4">Primary</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="ma-4">Secondary</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="true" Class="ma-4">Disabled</MudButton>
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
-            <MudButton Variant="Variant.Text" Class="mx-2">Default</MudButton>
-            <MudButton Variant="Variant.Text" Color="Color.Primary" Class="mx-2">Primary</MudButton>
-            <MudButton Variant="Variant.Text" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
-            <MudButton Variant="Variant.Text" Disabled="true" Class="mx-2">Disabled</MudButton>
+        <MudPaper Class="pa-4 d-flex justify-center flex-wrap">
+            <MudButton Variant="Variant.Text" Class="ma-4">Default</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Primary" Class="ma-4">Primary</MudButton>
+            <MudButton Variant="Variant.Text" Color="Color.Secondary" Class="ma-4">Secondary</MudButton>
+            <MudButton Variant="Variant.Text" Disabled="true" Class="ma-4">Disabled</MudButton>
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="12" md="4">
-        <MudPaper Class="px-4 py-8 d-flex justify-center mud-width-full">
-            <MudButton Variant="Variant.Outlined" Class="mx-2">Default</MudButton>
-            <MudButton Variant="Variant.Outlined" Color="Color.Primary" Class="mx-2">Primary</MudButton>
-            <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Class="mx-2">Secondary</MudButton>
-            <MudButton Variant="Variant.Outlined" Disabled="true" Class="mx-2">Disabled</MudButton>
+        <MudPaper Class="pa-4 d-flex justify-center flex-wrap">
+            <MudButton Variant="Variant.Outlined" Class="ma-4">Default</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Primary" Class="ma-4">Primary</MudButton>
+            <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Class="ma-4">Secondary</MudButton>
+            <MudButton Variant="Variant.Outlined" Disabled="true" Class="ma-4">Disabled</MudButton>
         </MudPaper>
     </MudItem>
-    <MudItem xs="12" sm="6">
-        <MudGrid>
-            <MudItem xs="12">
-                <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
-            </MudItem>
-            <MudItem xs="12">
-                <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
-            </MudItem>
-        </MudGrid>
+    <MudItem md="12" lg="6">
+        <MudSimpleTable Style="overflow-x: auto;">
+            <thead>
+                <tr>
+                    @foreach (var h in headings)
+                    {
+                        <th>@h</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in rows)
+                {
+                    <tr>
+                        @foreach (var x in row.Split())
+                        {
+                            <td>@x</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </MudSimpleTable>
     </MudItem>
-    <MudItem xs="12" sm="6">
-        <MudPaper Class="pa-4" Style="height: 100%">
+    <MudItem md="12" lg="6">
+        <MudPaper Class="pa-5" Style="height: 100%">
             <MudGrid>
-                <MudItem md="4" xs="12">
-                    <MudAlert Severity="Severity.Normal" Class="mb-2 mt-3">Default Square</MudAlert>
-                    <MudAlert Severity="Severity.Info" Class="my-2">Info Square</MudAlert>
-                    <MudAlert Severity="Severity.Success" Class="my-2">Success Square</MudAlert>
-                    <MudAlert Severity="Severity.Warning" Class="my-2">Warning Square</MudAlert>
-                    <MudAlert Severity="Severity.Error" Class="my-2">Error Square</MudAlert>
+                <MudItem lg="4" md="12">
+                    <MudAlert Severity="Severity.Normal" Class="mb-5">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Class="my-5">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Class="my-5">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Class="my-5">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Class="mt-5">Error Square</MudAlert>
                 </MudItem>
-                <MudItem md="4" xs="12">
-                    <MudAlert Severity="Severity.Normal" Variant="Variant.Outlined" Class="my-2">Default Square</MudAlert>
-                    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="my-2">Info Square</MudAlert>
-                    <MudAlert Severity="Severity.Success" Variant="Variant.Outlined" Class="my-2">Success Square</MudAlert>
-                    <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined" Class="my-2">Warning Square</MudAlert>
-                    <MudAlert Severity="Severity.Error" Variant="Variant.Outlined" Class="my-2">Error Square</MudAlert>
+                <MudItem lg="4" md="12">
+                    <MudAlert Severity="Severity.Normal" Variant="Variant.Outlined" Class="mb-4">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="my-4">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Variant="Variant.Outlined" Class="my-4">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Variant="Variant.Outlined" Class="my-4">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Variant="Variant.Outlined" Class="mt-4">Error Square</MudAlert>
                 </MudItem>
-                <MudItem md="4" xs="12">
-                    <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Class="mb-2 mt-3">Default Square</MudAlert>
-                    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Class="my-2">Info Square</MudAlert>
-                    <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-2">Success Square</MudAlert>
-                    <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="my-2">Warning Square</MudAlert>
-                    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="my-2">Error Square</MudAlert>
+                <MudItem lg="4" md="12">
+                    <MudAlert Severity="Severity.Normal" Variant="Variant.Filled" Class="mb-5">Default Square</MudAlert>
+                    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Class="my-5">Info Square</MudAlert>
+                    <MudAlert Severity="Severity.Success" Variant="Variant.Filled" Class="my-5">Success Square</MudAlert>
+                    <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" Class="my-5">Warning Square</MudAlert>
+                    <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Class="mt-5">Error Square</MudAlert>
                 </MudItem>
             </MudGrid>
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4 d-flex justify-space-around flex-wrap" Style="height: 200px;">
+        <MudPaper Class="pa-4 d-flex justify-space-around flex-wrap" MinHeight="100px">
             <MudBadge Content="3" Color="Color.Primary" Overlap="true" Class="mx-6 my-4">
                 <MudIcon Icon="@Icons.Material.Filled.Email" Color="Color.Default" />
             </MudBadge>
@@ -79,7 +92,7 @@
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="6" md="4">
-        <MudPaper Class="pa-4 d-flex justify-space-around flex-wrap" Style="height: 200px;">
+        <MudPaper Class="px-4 py-6 d-flex justify-space-around flex-wrap" MinHeight="100px">
             <MudChip>Default</MudChip>
             <MudChip Color="Color.Primary">Primary</MudChip>
             <MudChip Color="Color.Secondary">Secondary</MudChip>
@@ -91,6 +104,27 @@
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="12" md="4">
-        <MudPaper Class="pa-4" Style="height: 200px;"></MudPaper>
+        <MudPaper Class="px-4 py-6 d-flex justify-space-around flex-wrap" MinHeight="100px">
+            <MudAvatar Color="Color.Default">M</MudAvatar>
+            <MudAvatar Color="Color.Primary">U</MudAvatar>
+            <MudAvatar Color="Color.Secondary">D</MudAvatar>
+            <MudAvatar Color="Color.Tertiary">B</MudAvatar>
+            <MudAvatar Color="Color.Info" Variant="Variant.Outlined">L</MudAvatar>
+            <MudAvatar Color="Color.Success" Variant="Variant.Outlined">A</MudAvatar>
+            <MudAvatar Color="Color.Warning" Variant="Variant.Outlined">Z</MudAvatar>
+            <MudAvatar Color="Color.Error" Variant="Variant.Outlined">R</MudAvatar>
+        </MudPaper>
     </MudItem>
 </MudGrid>
+
+@code {
+    string[] headings = { "ID", "Name", "Email", "Gender", "IP Address" };
+    string[] rows = {
+        @"1 Krishna kpartner0@usatoday.com Male 28.25.250.202",
+        @"2 Webb wstitle1@ning.com Male 237.168.134.114",
+        @"3 Nathanil nneal2@cyberchimps.com Male 92.6.0.175",
+        @"4 Adara alockwood3@patch.com Female 182.174.217.152",
+        @"5 Cecilius cchaplin4@shinystat.com Male 195.124.144.18",
+        @"6 Cicely cemerine9@soup.io Female 138.94.191.43",
+    };
+}
