@@ -56,57 +56,13 @@
 
 
             <MudText Typo="Typo.body2" GutterBottom="true" Class="pt-4 mx-4"><b>Text & Actions</b></MudText>
-
-            <MudExpansionPanels Elevation="0" Square="true" Class="mud-thememanager-color-expansion mt-4">
-                @*<MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Text Primary" Color="@_customTheme.Palette.TextPrimary" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.TextPrimary" ColorValue="@_customTheme.Palette.TextPrimary" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>
-            <MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Text Secondary" Color="@_customTheme.Palette.TextSecondary" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.TextSecondary" ColorValue="@_customTheme.Palette.TextSecondary" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>
-            <MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Text Disabled" Color="@_customTheme.Palette.TextDisabled" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.TextDisabled" ColorValue="@_customTheme.Palette.TextDisabled" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>
-            <MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Action Default" Color="@_customTheme.Palette.ActionDefault" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.ActionDefault" ColorValue="@_customTheme.Palette.ActionDefault" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>
-            <MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Disabled" Color="@_customTheme.Palette.ActionDisabled" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.ActionDisabled" ColorValue="@_customTheme.Palette.ActionDisabled" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>
-            <MudExpansionPanel HideIcon="true">
-                <TitleContent>
-                    <MudThemeManagerColorItem Name="Disabled BG" Color="@_customTheme.Palette.ActionDisabledBackground" />
-                </TitleContent>
-                <ChildContent>
-                    <MudThemeManagerColorPicker ColorType="ThemePaletteColor.ActionDisabledBackground" ColorValue="@_customTheme.Palette.ActionDisabledBackground" ColorValueChanged="UpdatePalette"></MudThemeManagerColorPicker>
-                </ChildContent>
-            </MudExpansionPanel>*@
-            </MudExpansionPanels>
+            <MudThemeManagerColorItem Name="Text Primary" ThemeColor="@_customTheme.Palette.TextPrimary" ColorType="ThemePaletteColor.TextPrimary" />
+            <MudThemeManagerColorItem Name="Text Secondary" ThemeColor="@_customTheme.Palette.TextSecondary" ColorType="ThemePaletteColor.TextSecondary" />
+            <MudThemeManagerColorItem Name="Text Disabled" ThemeColor="@_customTheme.Palette.TextDisabled" ColorType="ThemePaletteColor.TextDisabled" />
+            <MudThemeManagerColorItem Name="Action Default" ThemeColor="@_customTheme.Palette.Surface" ColorType="ThemePaletteColor.ActionDefault" />
+            <MudThemeManagerColorItem Name="Action Disabled" ThemeColor="@_customTheme.Palette.ActionDisabled" ColorType="ThemePaletteColor.ActionDisabled" />
+            <MudThemeManagerColorItem Name="Disabled BG" ThemeColor="@_customTheme.Palette.ActionDisabledBackground" ColorType="ThemePaletteColor.ActionDisabledBackground" />
+            <MudThemeManagerColorItem Name="Surface" ThemeColor="@_customTheme.Palette.Surface" ColorType="ThemePaletteColor.Surface" />
         </div>
     </MudDrawer>
     <MudOverlay @bind-Visible="Open" OnClick="@UpdateOpenValue" DarkBackground="false" />
