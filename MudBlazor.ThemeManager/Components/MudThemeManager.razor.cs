@@ -14,6 +14,8 @@ namespace MudBlazor.ThemeManager
         [Parameter] public bool Open { get; set; }
         [Parameter] public EventCallback<bool> OpenChanged { get; set; }
         [Parameter] public ThemeManagerTheme Theme { get; set; }
+
+        [Parameter] public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
         [Parameter] public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
         async Task UpdateOpenValue()
