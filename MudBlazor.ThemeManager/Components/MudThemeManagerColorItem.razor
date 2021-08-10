@@ -9,7 +9,7 @@
         <div style="background:@ThemeColor.ToString();" class="px-8 py-3 mud-float-right rounded mud-elevation-25"></div>
     </div>
     <MudPopover Open="@_isOpen" Elevation="25" Square="true" OffsetY="true" Direction="Direction.Bottom">
-        <MudColorPicker PickerVariant="PickerVariant.Static" Elevation="0" Value="ThemeColor" ValueChanged="UpdateColor" ColorPickerView="ColorPickerView"/>
+        <MudColorPicker Class="mud-thememanager-color-picker" PickerVariant="PickerVariant.Static" Elevation="0" Value="ThemeColor" ValueChanged="UpdateColor" ColorPickerView="ColorPickerView"/>
     </MudPopover>
 </div>
 

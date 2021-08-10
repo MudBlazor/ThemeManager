@@ -15,26 +15,13 @@
     animation-timing-function: linear;
 }
 
-.mud-thememanager-color-picker-color:hover {
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
-}
-
-.mud-thememanager-color-expansion .mud-expand-panel {
-    border: none !important;
+.mud-thememanager-color-picker .mud-paper, .mud-input {
     color: #424242;
     background-color: #FFFFFF;
 }
 
-    .mud-thememanager-color-expansion .mud-expand-panel .mud-expand-panel-header {
-        padding: 0px !important;
-        color: #424242;
-        background-color: #FFFFFF;
-    }
-
-.mud-thememanager-color-input > div.mud-input.mud-input-text {
-    margin-top: 0px;
+.mud-thememanager-color-picker .mud-icon-button {
+    color: #00000089;
 }
 
 .mud-themedrawer {
