@@ -43,6 +43,7 @@ Add the components in your `MainLayout.razor` and inside `<MudLayout>`
 Add the following inside your @code for `MainLayout.razor`
 ```razor
 private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
+public bool _themeManagerOpen = false;
 
 void OpenThemeManager(bool value)
 {
