@@ -10,10 +10,6 @@ Blazor Theme Manager component for MudBlazor library. Can be used live or during
 
 **This component is not suitable for prod applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
 
-## Online Demo & Examples
-- [MudBlazor Theme Manager](https://thememanager.mudblazor.com/)
-- [AdminDashbord Template](https://templates.mudblazor.com/)
-
 ## Workflow
 ![caption](content/WorkFlow_DarkTheme.webp)
 
