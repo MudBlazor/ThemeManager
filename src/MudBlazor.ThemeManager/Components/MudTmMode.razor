@@ -1,0 +1,28 @@
+@using MudBlazor.ThemeManager.Enums
+<div>
+    <MudGrid Class="my-3"
+             Spacing="3">
+        <MudItem xs="6">
+            <MudButton Class="mode-button"
+                       FullWidth="true"
+                       OnClick="@(() => UpdateMode(Modes.Light))"
+                       Style="background: white;">
+                <ChildContent>
+                    <MudIcon Color="Color.Primary"
+                             Icon="@Icons.Material.Filled.WbSunny" />
+                </ChildContent>
+            </MudButton>
+        </MudItem>
+        <MudItem xs="6">
+            <MudButton Class="mode-button"
+                       FullWidth="true"
+                       OnClick="@(() => UpdateMode(Modes.Dark))"
+                       Style="background: #333333;">
+                <ChildContent>
+                    <MudIcon Icon="@Icons.Material.Filled.DarkMode"
+                             Style="color: #c9c9c9" />
+                </ChildContent>
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+</div>
