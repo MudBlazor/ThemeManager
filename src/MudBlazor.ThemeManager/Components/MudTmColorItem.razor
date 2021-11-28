@@ -1,0 +1,51 @@
+@using MudBlazor.Extensions
+@using MudBlazor.ThemeManager.Enums
+<div>
+    <MudText Class="mb-3"
+             Typo="Typo.body2">
+        <b>@(ColorSection.Key.ToDescriptionString())</b>
+    </MudText>
+
+    @if (ColorSection.Value.Variant == ColorSectionVariants.Basic)
+    {
+        <MudGrid Class="mb-3"
+                 Spacing="3">
+            @foreach (var color in ColorSection.Value.ColorOptions)
+            {
+                <MudItem xs="3">
+                    <div class="@(color.ToString() == ColorSection.Value.SelectedColor ? "color-dot color-dot-selected" : "color-dot")"
+                         @onclick="@(() => UpdateSelectedColor(color.ToString()))"
+                         style="@($"background: {color};")">
+                    </div>
+                </MudItem>
+            }
+        </MudGrid>
+    }
+    else if (ColorSection.Value.Variant == ColorSectionVariants.Advanced)
+    {
+        <MudOverlay AutoClose="true"
+                    @bind-Visible="_isOpen" />
+
+        <div class="relative">
+            <div class="mud-list-item-clickable mud-ripple"
+                 @onclick="ToggleOpen">
+                <div class="color-dot"
+                     style="@($"background: {ColorSection.Value.SelectedColor}; width:100%")">
+                </div>
+            </div>
+
+            <MudPopover Direction="Direction.Bottom"
+                        Elevation="25"
+                        OffsetY="true"
+                        Open="@_isOpen"
+                        Square="true">
+                <MudColorPicker Class="mud-theme-manager-color-picker"
+                                ColorPickerView="ColorPickerView.Spectrum"
+                                Elevation="0"
+                                PickerVariant="PickerVariant.Static"
+                                Value="ColorSection.Value.SelectedColor"
+                                ValueChanged="UpdateSelectedColor" />
+            </MudPopover>
+        </div>
+    }
+</div>
