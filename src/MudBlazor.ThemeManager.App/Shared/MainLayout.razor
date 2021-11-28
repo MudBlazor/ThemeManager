@@ -1,27 +1,61 @@
-﻿@inherits LayoutComponentBase
+﻿@using MudBlazor.ThemeManager.Models
+@inherits LayoutComponentBase
 
-<MudThemeManager />
+<MudThemeProvider Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" />
+    <MudAppBar Color="Color.Transparent"
+               Elevation="1">
+        <MudIconButton Color="Color.Inherit"
+                       Edge="Edge.Start"
+                       Icon="@Icons.Material.Filled.Menu"
+                       OnClick="@(() => _drawerOpen = !_drawerOpen)" />
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton Color="Color.Inherit"
+                       Edge="Edge.End"
+                       Icon="@Icons.Material.Filled.MoreVert" />
     </MudAppBar>
-    <MudDrawer @bind-Open="@_drawerOpen" Elevation="1">
-        <MudText Typo="Typo.h6" Class="px-4 pt-2">Theme Manager</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Test Application</MudText>
+    <MudDrawer @bind-Open="@_drawerOpen"
+               Elevation="1">
+        <MudText Class="pt-2 px-4"
+                 Typo="Typo.h6">
+            Theme Manager
+        </MudText>
+        <MudText Class="mud-text-secondary px-4"
+                 Typo="Typo.body2">
+            Test Application
+        </MudText>
         <NavMenu />
     </MudDrawer>
+    <MudThemeManager @bind-Open="_themeManagerOpen"
+                     @bind-Theme="_theme"
+                     Options="_themeManagerOptions" />
+    <MudThemeManagerButton OnClick="@(e => _themeManagerOpen = true)" />
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.False" Class="mt-16 px-16">
+        <MudContainer Class="mt-16 px-16"
+                      MaxWidth="MaxWidth.False">
             @Body
         </MudContainer>
     </MudMainContent>
 </MudLayout>
 
 @code {
-    bool _drawerOpen = true;
+
+    private MudTheme _theme = new()
+    {
+        Palette = new Palette
+        {
+            Primary = Colors.Green.Default,
+            Secondary = Colors.Amber.Default
+        }
+    };
+
+    private bool _drawerOpen;
+    private bool _themeManagerOpen;
+
+    private readonly ThemeManagerOptions _themeManagerOptions = PresetThemeManagerConfigurations.GetPresetConfigOne();
+
+
 }
