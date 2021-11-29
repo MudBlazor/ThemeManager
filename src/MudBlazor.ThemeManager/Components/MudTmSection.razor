@@ -1,0 +1,16 @@
+﻿<div class="theme-manager-section">
+    <MudExpansionPanel @bind-IsExpanded="_open"
+                       HideIcon="true"
+                       Style="background: var(--mud-palette-drawer-background)">
+        <TitleContent>
+            <div class="d-flex">
+                <MudText>@Title</MudText>
+                <MudSpacer />
+                <MudIcon Icon="@(_open ? Icons.Material.Filled.ArrowDropUp : Icons.Material.Filled.ArrowDropDown)" />
+            </div>
+        </TitleContent>
+        <ChildContent>
+            @ChildContent
+        </ChildContent>
+    </MudExpansionPanel>
+</div>

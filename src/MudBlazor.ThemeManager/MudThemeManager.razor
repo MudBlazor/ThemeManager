@@ -1,18 +1,91 @@
-﻿<MudThemeProvider Theme="@Theme" />
+﻿@using MudBlazor.ThemeManager.Models
+<MudDrawer Anchor="@Anchor"
+           DisableOverlay="@DisableOverlay"
+           Elevation="@Elevation"
+           Open="@Open"
+           Variant="@DrawerVariant.Temporary"
+           Width="270px">
 
+    <MudDrawerHeader Class="align-center">
+        <MudText Typo="Typo.body1">
+            <b>Theme Manager</b>
+        </MudText>
+        <MudSpacer />
+        <MudIconButton Color="Color.Default"
+                       Icon="@Icons.Material.Filled.Close"
+                       OnClick="@(() => OpenChanged.InvokeAsync(false))"
+                       Size="Size.Small" />
+    </MudDrawerHeader>
 
-<MudDrawer @bind-Open="@_open" Anchor="@Anchor" DisableOverlay="@DisableOverlay" Elevation="@Elevation" Variant="@DrawerVariant.Temporary">
-   <ThemeManagerOption Title="Layout">
+    <MudDivider Class="mb-2" />
 
-   </ThemeManagerOption>
-   <ThemeManagerOption Title="Preset Color">
+    <div class="mt-2">
+        @if (Options.ShowPresetThemeSection)
+        {
+            <div class="px-4">
+                <MudSelect Dense="true"
+                           Label="Preset Themes"
+                           T="string"
+                           Value="_themeManagerTheme.PresetThemes"
+                           ValueChanged="OnPresetThemeChanged"
+                           Variant="Variant.Outlined">
+                    <MudSelectItem Value="@(PresetThemes.Custom)" />
+                    <MudSelectItem Value="@(PresetThemes.MuiDark)" />
+                </MudSelect>
+            </div>
+        }
 
-   </ThemeManagerOption>
-   <ThemeManagerOption Title="Font Family">
+        <div class="px-4">
+            @if (_themeManagerTheme.PresetThemes == PresetThemes.Custom)
+            {
+                @if (Options.ShowModeSection)
+                {
+                    <MudTmMode Mode="_themeManagerTheme.Mode"
+                               ModeChanged="ToggleMode" />
+                }
 
-   </ThemeManagerOption>
-   <ThemeManagerOption Title="Border Radius">
+                @if (Options.ShowLayoutSection)
+                {
+                    <MudTmSection SectionOptions="Options.LayoutSectionOptions"
+                                  Title="Layout">
+                        <MudSlider Max="25"
+                                   Min="0"
+                                   Step="1"
+                                   T="int"
+                                   Value="@_themeManagerTheme.DefaultBorderRadiusAsInt"
+                                   ValueChanged="UpdateBorderRadius">
+                            <MudText Class="mb-2"
+                                     Typo="Typo.body2">
+                                <b> @($"Border Radius: {_themeManagerTheme.DefaultBorderRadiusAsInt}px")</b>
+                            </MudText>
+                        </MudSlider>
+                    </MudTmSection>
+                }
 
-   </ThemeManagerOption>
+                @if (Options.ShowColorSections)
+                {
+                    <MudTmSection SectionOptions="Options.ColorSectionOptions"
+                                  Title="Colors">
+                        @foreach (var item in Options.ColorSections.Where(x => x.Value.Display))
+                        {
+                            <MudTmColorItem ColorChanged="UpdateColor"
+                                            ColorSection="@item" />
+                        }
+                    </MudTmSection>
+                }
+            }
+            else
+            {
+                <MudText Class="mt-4 px-2"
+                         Typo="Typo.body2">
+                    Preset themes cannot be customized.
+                </MudText>
+            }
+        </div>
+    </div>
 </MudDrawer>
 
+<MudOverlay DarkBackground="false"
+            OnClick="@(() => OpenChanged.InvokeAsync(false))"
+            Visible="Open"
+            VisibleChanged="OpenChanged" />
