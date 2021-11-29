@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using MudBlazor.ThemeManager.Enums;
 using MudBlazor.ThemeManager.Models;
@@ -13,8 +12,6 @@ namespace MudBlazor.ThemeManager;
 public partial class MudThemeManager
 {
     private ThemeManagerTheme _themeManagerTheme = new();
-
-    [Inject] private ILocalStorageService LocalStorage { get; set; } = null!;
 
     /// <summary>
     ///     Sets the opened state of Theme Manager.
@@ -66,23 +63,16 @@ public partial class MudThemeManager
 
     protected override async Task OnInitializedAsync()
     {
-        if (await LocalStorage.ContainKeyAsync("mudThemeManager"))
-        {
-            _themeManagerTheme = await LocalStorage.GetItemAsync<ThemeManagerTheme>("mudThemeManager");
-        }
-        else
-        {
-            _themeManagerTheme.PresetThemes = Options.DefaultPresetThemeSelected;
-            _themeManagerTheme.Mode = Options.DefaultMode;
-            _themeManagerTheme.Palette.SetThemeManagerThemePalette(Theme.Palette);
-            _themeManagerTheme.LayoutProperties = Theme.LayoutProperties;
-            
-            // TODO: Maybe move that somewhere else?
-            
-            if(int.TryParse(_themeManagerTheme.LayoutProperties.DefaultBorderRadius.Replace("px", ""),
-                out var defaultBorderRadiusAsInt))
-                _themeManagerTheme.DefaultBorderRadiusAsInt = defaultBorderRadiusAsInt;
-        }
+        _themeManagerTheme.PresetThemes = Options.DefaultPresetThemeSelected;
+        _themeManagerTheme.Mode = Options.DefaultMode;
+        _themeManagerTheme.Palette.SetThemeManagerThemePalette(Theme.Palette);
+        _themeManagerTheme.LayoutProperties = Theme.LayoutProperties;
+        
+        // TODO: Maybe move that somewhere else?
+        
+        if(int.TryParse(_themeManagerTheme.LayoutProperties.DefaultBorderRadius.Replace("px", ""),
+            out var defaultBorderRadiusAsInt))
+            _themeManagerTheme.DefaultBorderRadiusAsInt = defaultBorderRadiusAsInt;
 
         await UpdateTheme();
     }
@@ -175,11 +165,5 @@ public partial class MudThemeManager
         }
         
         await ThemeChanged.InvokeAsync(Theme);
-        await SaveTheme();
-    }
-
-    private async Task SaveTheme()
-    {
-        await LocalStorage.SetItemAsync("mudThemeManager", _themeManagerTheme);
     }
 }
