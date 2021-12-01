@@ -13,6 +13,21 @@
                        Icon="@Icons.Material.Filled.Menu"
                        OnClick="@(() => _drawerOpen = !_drawerOpen)" />
         <MudSpacer />
+        <div>
+            <MudSelect Class="mx-4"
+                       Dense="true"
+                       Label="Theme Manager Config"
+                       Style="max-width: 250px"
+                       T="string"
+                       Value="_themeManagerConfiguration.Key"
+                       ValueChanged="ThemeManagerConfigChanged">
+                @foreach (var config in _themeManagerConfigurations)
+                {
+                    <MudSelectItem T="string"
+                                   Value="config.Key" />
+                }
+            </MudSelect>
+        </div>
         <MudIconButton Color="Color.Inherit"
                        Edge="Edge.End"
                        Icon="@Icons.Material.Filled.MoreVert" />
@@ -43,6 +58,12 @@
 
 @code {
 
+    private readonly Dictionary<string, ThemeManagerConfiguration> _themeManagerConfigurations = new()
+    {
+        {"Preset One", ThemeManagerPresetConfigurations.GetPresetConfigOne()},
+        {"Preset Two", ThemeManagerPresetConfigurations.GetPresetConfigTwo()}
+    };
+
     private MudTheme _theme = new()
     {
         Palette = new Palette
@@ -52,10 +73,19 @@
         }
     };
 
+    private KeyValuePair<string, ThemeManagerConfiguration> _themeManagerConfiguration;
+
     private bool _drawerOpen;
     private bool _themeManagerOpen;
 
-    private readonly ThemeManagerOptions _themeManagerOptions = PresetThemeManagerConfigurations.GetPresetConfigOne();
+    protected override void OnInitialized()
+    {
+        _themeManagerConfiguration = _themeManagerConfigurations.First();
+    }
 
+    private void ThemeManagerConfigChanged(string key)
+    {
+        _themeManagerConfiguration = _themeManagerConfigurations.FirstOrDefault(x => x.Key == key);
+    }
 
 }
