@@ -43,4 +43,15 @@ public static class ThemeManagerPresetConfigurations
 
         return themeManagerOptions;
     }
+
+    public static ThemeManagerConfiguration GetPresetConfigTwo()
+    {
+        var themeManagerOptions = new ThemeManagerConfiguration
+        {
+            ShowPresetThemeSection = false,
+            ShowColorSections = true,
+        };
+
+        return themeManagerOptions;
+    }
 }
