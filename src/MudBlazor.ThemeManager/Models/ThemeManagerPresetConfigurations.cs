@@ -7,9 +7,9 @@ namespace MudBlazor.ThemeManager.Models;
 
 public static class PresetThemeManagerConfigurations
 {
-    public static ThemeManagerOptions GetPresetConfigOne(MudTheme? theme = null)
+    public static ThemeManagerConfiguration GetPresetConfigOne(MudTheme? theme = null)
     {
-        var themeManagerOptions = new ThemeManagerOptions
+        var themeManagerOptions = new ThemeManagerConfiguration
         {
             ShowLayoutSection = true,
             ShowColorSections = true

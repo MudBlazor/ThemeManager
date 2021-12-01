@@ -31,7 +31,7 @@
     </MudDrawer>
     <MudThemeManager @bind-Open="_themeManagerOpen"
                      @bind-Theme="_theme"
-                     Options="_themeManagerOptions" />
+                     Configuration="_themeManagerConfiguration.Value" />
     <MudThemeManagerButton OnClick="@(e => _themeManagerOpen = true)" />
     <MudMainContent>
         <MudContainer Class="mt-16 px-16"
