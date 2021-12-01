@@ -5,7 +5,7 @@ using MudBlazor.Utilities;
 
 namespace MudBlazor.ThemeManager.Models;
 
-public static class PresetThemeManagerConfigurations
+public static class ThemeManagerPresetConfigurations
 {
     public static ThemeManagerConfiguration GetPresetConfigOne(MudTheme? theme = null)
     {
