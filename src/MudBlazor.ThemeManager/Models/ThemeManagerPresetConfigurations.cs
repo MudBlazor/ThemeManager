@@ -5,11 +5,11 @@ using MudBlazor.Utilities;
 
 namespace MudBlazor.ThemeManager.Models;
 
-public static class PresetThemeManagerConfigurations
+public static class ThemeManagerPresetConfigurations
 {
-    public static ThemeManagerOptions GetPresetConfigOne(MudTheme? theme = null)
+    public static ThemeManagerConfiguration GetPresetConfigOne(MudTheme? theme = null)
     {
-        var themeManagerOptions = new ThemeManagerOptions
+        var themeManagerOptions = new ThemeManagerConfiguration
         {
             ShowLayoutSection = true,
             ShowColorSections = true
@@ -40,6 +40,17 @@ public static class PresetThemeManagerConfigurations
             Variant = ColorSectionVariants.Advanced,
             SelectedColor = theme is null ? Colors.BlueGrey.Default : theme.Palette.Tertiary.Value
         });
+
+        return themeManagerOptions;
+    }
+
+    public static ThemeManagerConfiguration GetPresetConfigTwo()
+    {
+        var themeManagerOptions = new ThemeManagerConfiguration
+        {
+            ShowPresetThemeSection = false,
+            ShowColorSections = true,
+        };
 
         return themeManagerOptions;
     }

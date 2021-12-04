@@ -20,7 +20,7 @@
     <MudDivider Class="mb-2" />
 
     <div class="mt-2">
-        @if (Options.ShowPresetThemeSection)
+        @if (Configuration.ShowPresetThemeSection)
         {
             <div class="px-4">
                 <MudSelect Dense="true"
@@ -38,15 +38,15 @@
         <div class="px-4">
             @if (_themeManagerTheme.PresetThemes == PresetThemes.Custom)
             {
-                @if (Options.ShowModeSection)
+                @if (Configuration.ShowModeSection)
                 {
                     <MudTmMode Mode="_themeManagerTheme.Mode"
                                ModeChanged="ToggleMode" />
                 }
 
-                @if (Options.ShowLayoutSection)
+                @if (Configuration.ShowLayoutSection)
                 {
-                    <MudTmSection SectionOptions="Options.LayoutSectionOptions"
+                    <MudTmSection SectionOptions="Configuration.LayoutSectionOptions"
                                   Title="Layout">
                         <MudSlider Max="25"
                                    Min="0"
@@ -62,11 +62,11 @@
                     </MudTmSection>
                 }
 
-                @if (Options.ShowColorSections)
+                @if (Configuration.ShowColorSections)
                 {
-                    <MudTmSection SectionOptions="Options.ColorSectionOptions"
+                    <MudTmSection SectionOptions="Configuration.ColorSectionOptions"
                                   Title="Colors">
-                        @foreach (var item in Options.ColorSections.Where(x => x.Value.Display))
+                        @foreach (var item in Configuration.ColorSections.Where(x => x.Value.Display))
                         {
                             <MudTmColorItem ColorChanged="UpdateColor"
                                             ColorSection="@item" />

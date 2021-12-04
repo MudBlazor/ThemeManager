@@ -3,7 +3,7 @@ using MudBlazor.ThemeManager.Models.Sections;
 
 namespace MudBlazor.ThemeManager.Models;
 
-public class ThemeManagerOptions
+public class ThemeManagerConfiguration
 {
     internal Dictionary<ColorTitles, ColorSectionOptions> ColorSections { get; set; } = new()
     {

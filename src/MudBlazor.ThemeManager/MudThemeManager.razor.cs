@@ -56,15 +56,15 @@ public partial class MudThemeManager
     public EventCallback<MudTheme> ThemeChanged { get; set; }
 
     /// <summary>
-    ///     Options of the Theme Manager.
+    ///     Configuration of the Theme Manager.
     /// </summary>
     [Parameter]
-    public ThemeManagerOptions Options { get; set; } = new();
+    public ThemeManagerConfiguration Configuration { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
-        _themeManagerTheme.PresetThemes = Options.DefaultPresetThemeSelected;
-        _themeManagerTheme.Mode = Options.DefaultMode;
+        _themeManagerTheme.PresetThemes = Configuration.DefaultPresetThemeSelected;
+        _themeManagerTheme.Mode = Configuration.DefaultMode;
         _themeManagerTheme.Palette.SetThemeManagerThemePalette(Theme.Palette);
         _themeManagerTheme.LayoutProperties = Theme.LayoutProperties;
         
@@ -143,8 +143,8 @@ public partial class MudThemeManager
         {
             case PresetThemes.Custom:
                 var palette = _themeManagerTheme.Mode == Modes.Dark
-                    ? Options.DarkPalette
-                    : Options.LightPalette;
+                    ? Configuration.DarkPalette
+                    : Configuration.LightPalette;
                 
                 palette.Primary = _themeManagerTheme.Palette.Primary;
                 palette.Secondary = _themeManagerTheme.Palette.Secondary;
