@@ -7,7 +7,7 @@
   <PropertyGroup>
     <Title>MudBlazor ThemeManager</Title>
     <PackageId>MudBlazor.ThemeManager</PackageId>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>Nuget.png</PackageIcon>
     <Company>MudBlazor</Company>
@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
-    <PackageReference Include="MudBlazor" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+    <PackageReference Include="MudBlazor" Version="6.0.6" />
   </ItemGroup>
 
   <ItemGroup>
