@@ -36,7 +36,7 @@
     right: 0;
     box-shadow: 1px 1px 8px var(--mud-palette-primary);
     color: #FFFFFF;
-    background-color: var(--mud-palette-primary);;
+    background-color: var(--mud-palette-primary);
     cursor: pointer;
 }
 
@@ -59,8 +59,8 @@
 
 .mud-theme-manager-color-picker {
     .mud-paper, .mud-input {
-        color: #424242;
-        background-color: #FFFFFF;
+        color: var(--mud-palette-text-primary);
+        background-color: var(--mud-palette-background);
     }
 
     .mud-icon-button {
