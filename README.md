@@ -60,6 +60,6 @@ protected override void OnInitialized()
 Connect the ThemeManagerTheme with `MudThemeProvider` to control all the theme colors. You can also connect `MudAppBar` and `MudDrawer` directly.
 ```html
 <MudThemeProvider Theme="_themeManager.Theme" />
-<MudAppBar Elevation="_themeManager.AppBarElevation">
-<MudDrawer @bind-Open="_drawerOpen" ClipMode="_themeManager.DrawerClipMode" Elevation="_themeManager.DrawerElevation">
+<MudAppBar Elevation="_themeManager.AppBarElevation"></MudAppBar>
+<MudDrawer @bind-Open="_drawerOpen" ClipMode="_themeManager.DrawerClipMode" Elevation="_themeManager.DrawerElevation"></MudDrawer>
 ```
