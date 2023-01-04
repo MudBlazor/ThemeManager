@@ -6,7 +6,7 @@
 [![Nuget version](https://img.shields.io/nuget/v/MudBlazor.ThemeManager?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/MudBlazor.ThemeManager/)
 [![Discord](https://img.shields.io/discord/786656789310865418?color=%237289da&label=Discord&logo=discord&logoColor=%237289da&style=flat-square)](https://discord.gg/mudblazor)
 
-Blazor Theme Manager component for MudBlazor library. Can be used live or during development to fast and easy try out different theme settings.
+Blazor Theme Manager component for MudBlazor library.  Can use either live or during development &mdash; fast and easy to try out different theme settings!
 
 **This component is not suitable for prod applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
 
