@@ -6,9 +6,9 @@
 [![Nuget version](https://img.shields.io/nuget/v/MudBlazor.ThemeManager?color=ff4081&label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/MudBlazor.ThemeManager/)
 [![Discord](https://img.shields.io/discord/786656789310865418?color=%237289da&label=Discord&logo=discord&logoColor=%237289da&style=flat-square)](https://discord.gg/mudblazor)
 
-Blazor Theme Manager component for MudBlazor. You can embed it in your app to allow user theme customization or to try out different theme settings during development quickly and easily.
+Blazor Theme Manager component for MudBlazor. You can use it to try out different theme settings during development quickly and easily.
 
-**This component is not suitable for prod applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
+**Use in production at your own risk. Be ready for performance issues, bugs and missing features. Feel free to help improve it.**
 
 ## Workflow
 ![caption](content/WorkFlow_DarkTheme.webp)
