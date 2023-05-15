@@ -15,20 +15,6 @@
     animation-timing-function: linear;
 }
 
-.mud-thememanager-color-picker .mud-paper, .mud-input {
-    color: #424242;
-    background-color: #FFFFFF;
-}
-
-.mud-thememanager-color-picker .mud-icon-button {
-    color: #00000089;
-}
-
-.mud-themedrawer {
-    color: rgba(0,0,0, 0.7);
-    background-color: #FFFFFF;
-}
-
 @keyframes spin {
     from {
         transform: rotate(0deg);
