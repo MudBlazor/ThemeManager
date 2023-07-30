@@ -1,5 +1,5 @@
 ﻿@namespace MudBlazor.ThemeManager
-@using System.Threading.Tasks 
+@using System.Threading.Tasks
 
 <MudOverlay @bind-Visible="_isOpen" AutoClose="true" />
 
@@ -8,8 +8,8 @@
         <MudText Typo="Typo.body2" Class="mud-float-left">@Name</MudText>
         <div style="background:@ThemeColor.ToString();" class="px-8 py-3 mud-float-right rounded mud-elevation-25"></div>
     </div>
-    <MudPopover Open="@_isOpen" Elevation="25" Square="true" OffsetY="true" Direction="Direction.Bottom">
-        <MudColorPicker Class="mud-thememanager-color-picker" PickerVariant="PickerVariant.Static" Elevation="0" ValueChanged="UpdateColor" ColorPickerView="ColorPickerView"/>
+    <MudPopover Open="@_isOpen" Elevation="25" Square="true" TransformOrigin="Origin.TopCenter" AnchorOrigin="Origin.BottomCenter">
+        <MudColorPicker Class="mud-thememanager-color-picker" PickerVariant="PickerVariant.Static" Elevation="0" ValueChanged="UpdateColor" ColorPickerView="ColorPickerView" />
     </MudPopover>
 </div>
 
@@ -48,10 +48,10 @@
     {
         ThemeColor = value;
         var newPaletteColor = new ThemeUpdatedValue()
-        {
-            ColorStringValue = value.ToString(),
-            ThemePaletteColor = ColorType
-        };
+            {
+                ColorStringValue = value.ToString(),
+                ThemePaletteColor = ColorType
+            };
 
         await ThemeManager.UpdatePalette(newPaletteColor);
     }
