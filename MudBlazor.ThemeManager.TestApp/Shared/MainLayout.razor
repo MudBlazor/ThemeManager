@@ -21,7 +21,7 @@
         </MudContainer>
     </MudMainContent>
     <MudThemeManagerButton OnClick="@((e) => OpenThemeManager(true))" />
-    <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" />
+    <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" IsDarkMode="@_isDarkMode" />
 </MudLayout>
 
 
@@ -47,11 +47,14 @@
     void DarkModeToggle()
     {
         _isDarkMode = !_isDarkMode;
+        _mudThemeProvider.IsDarkMode = _isDarkMode;
+        StateHasChanged();
     }
 
     void UpdateTheme(ThemeManagerTheme value)
     {
         _themeManager = value;
+        _mudThemeProvider.Theme = _themeManager.Theme;
         StateHasChanged();
     }
 
