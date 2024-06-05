@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using MudBlazor.ThemeManager.Extensions;
 
 namespace MudBlazor.ThemeManager
@@ -7,10 +6,10 @@ namespace MudBlazor.ThemeManager
     public partial class MudThemeManager
     {
         private bool _isDarkMode;
-        private Palette _currentPaletteDark;
-        private Palette _currentPaletteLight;
+        private Palette? _currentPaletteDark;
+        private Palette? _currentPaletteLight;
 
-        public static MudTheme _customTheme { get; set; }
+        public static MudTheme? _customTheme { get; set; }
 
         public string ThemePresets { get; set; } = "Not Implemented";
 
@@ -21,7 +20,7 @@ namespace MudBlazor.ThemeManager
         public EventCallback<bool> OpenChanged { get; set; }
 
         [Parameter]
-        public ThemeManagerTheme Theme { get; set; }
+        public ThemeManagerTheme? Theme { get; set; }
 
         [Parameter]
         public bool IsDarkMode
@@ -49,6 +48,12 @@ namespace MudBlazor.ThemeManager
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            if (Theme is null)
+            {
+                return;
+            }
+
             _customTheme = Theme.Theme.DeepClone();
             _currentPaletteLight = Theme.Theme.Palette.DeepClone();
             _currentPaletteDark = Theme.Theme.PaletteDark.DeepClone();
@@ -57,6 +62,16 @@ namespace MudBlazor.ThemeManager
         public Task UpdatePalette(ThemeUpdatedValue value)
         {
             UpdateCustomTheme();
+
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            if (_customTheme is null)
+            {
+                return Task.CompletedTask;
+            }
 
             var newPalette = _customTheme.Palette;
 
@@ -157,10 +172,11 @@ namespace MudBlazor.ThemeManager
             return UpdateThemeChangedAsync();
         }
 
-        private async Task UpdateOpenValueAsync()
+        private Task UpdateOpenValueAsync()
         {
             Open = false;
-            await OpenChanged.InvokeAsync(false);
+
+            return OpenChanged.InvokeAsync(false);
         }
 
         private async Task UpdateThemeChangedAsync()
@@ -171,6 +187,11 @@ namespace MudBlazor.ThemeManager
 
         private Task OnDrawerClipModeAsync(DrawerClipMode value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.DrawerClipMode = value;
 
             return UpdateThemeChangedAsync();
@@ -178,6 +199,16 @@ namespace MudBlazor.ThemeManager
 
         private Task OnDefaultBorderRadiusAsync(int value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            if (_customTheme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.DefaultBorderRadius = value;
             var newBorderRadius = _customTheme.LayoutProperties;
 
@@ -191,10 +222,20 @@ namespace MudBlazor.ThemeManager
 
         private Task OnDefaultElevationAsync(int value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            if (_customTheme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.DefaultElevation = value;
             var newDefaultElevation = _customTheme.Shadows;
 
-            string newElevation = newDefaultElevation.Elevation[value].ToString();
+            string newElevation = newDefaultElevation.Elevation[value];
             newDefaultElevation.Elevation[1] = newElevation;
 
             _customTheme.Shadows.Elevation[1] = newElevation;
@@ -205,6 +246,11 @@ namespace MudBlazor.ThemeManager
 
         private Task OnAppBarElevationAsync(int value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.AppBarElevation = value;
 
             return UpdateThemeChangedAsync();
@@ -212,6 +258,11 @@ namespace MudBlazor.ThemeManager
 
         private Task OnDrawerElevationAsync(int value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.DrawerElevation = value;
 
             return UpdateThemeChangedAsync();
@@ -219,6 +270,16 @@ namespace MudBlazor.ThemeManager
 
         private Task OnFontFamilyAsync(string value)
         {
+            if (Theme is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            if (_customTheme is null)
+            {
+                return Task.CompletedTask;
+            }
+
             Theme.FontFamily = value;
             var newTypography = _customTheme.Typography;
 
@@ -245,14 +306,14 @@ namespace MudBlazor.ThemeManager
 
         private void UpdateCustomTheme()
         {
-            if (IsDarkMode)
+            if (_customTheme is null)
             {
-                _customTheme.Palette = _currentPaletteDark;
+                return;
             }
-            else
-            {
-                _customTheme.Palette = _currentPaletteLight;
-            }
+
+            _customTheme.Palette = IsDarkMode
+                ? _currentPaletteDark
+                : _currentPaletteLight;
         }
     }
 }

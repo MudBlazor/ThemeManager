@@ -24,8 +24,6 @@
     <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" IsDarkMode="@_isDarkMode" />
 </MudLayout>
 
-
-
 @code {
     private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
     private MudThemeProvider _mudThemeProvider;
@@ -34,24 +32,24 @@
     public bool _drawerOpen = true;
     public bool _themeManagerOpen = false;
 
-    void DrawerToggle()
+    private void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
 
-    void OpenThemeManager(bool value)
+    private void OpenThemeManager(bool value)
     {
         _themeManagerOpen = value;
     }
 
-    void DarkModeToggle()
+    private void DarkModeToggle()
     {
         _isDarkMode = !_isDarkMode;
         _mudThemeProvider.IsDarkMode = _isDarkMode;
         StateHasChanged();
     }
 
-    void UpdateTheme(ThemeManagerTheme value)
+    private void UpdateTheme(ThemeManagerTheme value)
     {
         _themeManager = value;
         _mudThemeProvider.Theme = _themeManager.Theme;

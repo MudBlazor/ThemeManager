@@ -4,7 +4,7 @@ namespace MudBlazor.ThemeManager.Extensions
 {
     public static class Extension
     {
-        public static T DeepClone<T>(this T source)
+        public static T? DeepClone<T>(this T source)
         {
             if (source != null)
             {
