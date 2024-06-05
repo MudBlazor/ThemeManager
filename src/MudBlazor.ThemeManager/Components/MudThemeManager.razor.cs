@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using MudBlazor.ThemeManager.Extensions;
 
@@ -7,17 +6,23 @@ namespace MudBlazor.ThemeManager
 {
     public partial class MudThemeManager
     {
+        private bool _isDarkMode;
+        private Palette _currentPaletteDark;
+        private Palette _currentPaletteLight;
+
         public static MudTheme _customTheme { get; set; }
-        private Palette _currentPaletteDark { get; set; }
-        private Palette _currentPaletteLight { get; set; }
 
         public string ThemePresets { get; set; } = "Not Implemented";
 
-        [Parameter] public bool Open { get; set; }
-        [Parameter] public EventCallback<bool> OpenChanged { get; set; }
-        [Parameter] public ThemeManagerTheme Theme { get; set; }
+        [Parameter]
+        public bool Open { get; set; }
 
-        private bool _isDarkMode;
+        [Parameter]
+        public EventCallback<bool> OpenChanged { get; set; }
+
+        [Parameter]
+        public ThemeManagerTheme Theme { get; set; }
+
         [Parameter]
         public bool IsDarkMode
         {
@@ -35,100 +40,21 @@ namespace MudBlazor.ThemeManager
             }
         }
 
-        [Parameter] public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
-        [Parameter] public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
+        [Parameter]
+        public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
 
-        async Task UpdateOpenValue()
-        {
-            Open = false;
-            await OpenChanged.InvokeAsync(false);
-        }
-
-        async Task UpdateThemeChanged()
-        {
-            await ThemeChanged.InvokeAsync(Theme);
-            StateHasChanged();
-        }
+        [Parameter]
+        public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             _customTheme = Theme.Theme.DeepClone();
             _currentPaletteLight = Theme.Theme.Palette.DeepClone();
             _currentPaletteDark = Theme.Theme.PaletteDark.DeepClone();
         }
 
-        private async void OnDrawerClipMode(DrawerClipMode value)
-        {
-            Theme.DrawerClipMode = value;
-            await UpdateThemeChanged();
-        }
-
-        async void OnDefaultBorderRadius(int value)
-        {
-            Theme.DefaultBorderRadius = value;
-            var newBorderRadius = _customTheme.LayoutProperties;
-
-            newBorderRadius.DefaultBorderRadius = $"{value}px";
-
-            _customTheme.LayoutProperties = newBorderRadius;
-            Theme.Theme = _customTheme;
-
-            await UpdateThemeChanged();
-        }
-
-        async void OnDefaultElevation(int value)
-        {
-            Theme.DefaultElevation = value;
-            var newDefaultElevation = _customTheme.Shadows;
-
-            string newElevation = newDefaultElevation.Elevation[value].ToString();
-            newDefaultElevation.Elevation[1] = newElevation;
-
-            _customTheme.Shadows.Elevation[1] = newElevation;
-            Theme.Theme = _customTheme;
-
-            await UpdateThemeChanged();
-        }
-
-        async void OnAppBarElevation(int value)
-        {
-            Theme.AppBarElevation = value;
-            await UpdateThemeChanged();
-        }
-
-        async void OnDrawerElevation(int value)
-        {
-            Theme.DrawerElevation = value;
-            await UpdateThemeChanged();
-        }
-
-
-        async void OnFontFamily(string value)
-        {
-            Theme.FontFamily = value;
-            var newTypography = _customTheme.Typography;
-
-            newTypography.Body1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Body2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Button.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Caption.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Default.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H3.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H4.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H5.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.H6.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Overline.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Subtitle1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-            newTypography.Subtitle2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
-
-            _customTheme.Typography = newTypography;
-            Theme.Theme = _customTheme;
-
-            await UpdateThemeChanged();
-        }
-        public async Task UpdatePalette(ThemeUpdatedValue value)
+        public Task UpdatePalette(ThemeUpdatedValue value)
         {
             UpdateCustomTheme();
 
@@ -228,7 +154,93 @@ namespace MudBlazor.ThemeManager
                 Theme.Theme.Palette = _customTheme.Palette;
             }
 
-            await UpdateThemeChanged();
+            return UpdateThemeChangedAsync();
+        }
+
+        private async Task UpdateOpenValueAsync()
+        {
+            Open = false;
+            await OpenChanged.InvokeAsync(false);
+        }
+
+        private async Task UpdateThemeChangedAsync()
+        {
+            await ThemeChanged.InvokeAsync(Theme);
+            StateHasChanged();
+        }
+
+        private Task OnDrawerClipModeAsync(DrawerClipMode value)
+        {
+            Theme.DrawerClipMode = value;
+
+            return UpdateThemeChangedAsync();
+        }
+
+        private Task OnDefaultBorderRadiusAsync(int value)
+        {
+            Theme.DefaultBorderRadius = value;
+            var newBorderRadius = _customTheme.LayoutProperties;
+
+            newBorderRadius.DefaultBorderRadius = $"{value}px";
+
+            _customTheme.LayoutProperties = newBorderRadius;
+            Theme.Theme = _customTheme;
+
+            return UpdateThemeChangedAsync();
+        }
+
+        private Task OnDefaultElevationAsync(int value)
+        {
+            Theme.DefaultElevation = value;
+            var newDefaultElevation = _customTheme.Shadows;
+
+            string newElevation = newDefaultElevation.Elevation[value].ToString();
+            newDefaultElevation.Elevation[1] = newElevation;
+
+            _customTheme.Shadows.Elevation[1] = newElevation;
+            Theme.Theme = _customTheme;
+
+            return UpdateThemeChangedAsync();
+        }
+
+        private Task OnAppBarElevationAsync(int value)
+        {
+            Theme.AppBarElevation = value;
+
+            return UpdateThemeChangedAsync();
+        }
+
+        private Task OnDrawerElevationAsync(int value)
+        {
+            Theme.DrawerElevation = value;
+
+            return UpdateThemeChangedAsync();
+        }
+
+        private Task OnFontFamilyAsync(string value)
+        {
+            Theme.FontFamily = value;
+            var newTypography = _customTheme.Typography;
+
+            newTypography.Body1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Body2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Button.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Caption.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Default.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H3.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H4.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H5.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.H6.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Overline.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Subtitle1.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+            newTypography.Subtitle2.FontFamily = new[] { value, "Helvetica", "Arial", "sans-serif" };
+
+            _customTheme.Typography = newTypography;
+            Theme.Theme = _customTheme;
+
+            return UpdateThemeChangedAsync();
         }
 
         private void UpdateCustomTheme()

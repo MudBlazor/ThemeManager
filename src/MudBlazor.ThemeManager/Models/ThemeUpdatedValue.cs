@@ -1,6 +1,4 @@
-﻿using MudBlazor.Utilities;
-
-namespace MudBlazor.ThemeManager
+﻿namespace MudBlazor.ThemeManager
 {
     public class ThemeUpdatedValue
     {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace MudBlazor.ThemeManager.Extensions
 {
@@ -13,7 +6,6 @@ namespace MudBlazor.ThemeManager.Extensions
     {
         public static T DeepClone<T>(this T source)
         {
-
             if (source != null)
             {
                 var serializeStr = JsonSerializer.Serialize(source);
@@ -22,11 +14,8 @@ namespace MudBlazor.ThemeManager.Extensions
                 var copyObj = JsonSerializer.Deserialize<T>(serializeStr, options);
                 return copyObj;
             }
-            else
-            {
-                return default(T);
-            }
 
+            return default(T);
         }
     }
 }

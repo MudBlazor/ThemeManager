@@ -1,5 +1,4 @@
 ﻿@namespace MudBlazor.ThemeManager
-@using System.Threading.Tasks
 
 <MudOverlay @bind-Visible="_isOpen" AutoClose="true" />
 
@@ -39,10 +38,7 @@
         }
     }
 
-    protected override bool ShouldRender()
-    {
-        return _shouldRender;
-    }
+    protected override bool ShouldRender() => _shouldRender;
 
     public async Task UpdateColor(MudColor value)
     {

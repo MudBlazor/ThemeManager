@@ -1,10 +1,6 @@
 ﻿using MudBlazor.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MudBlazor.ThemeManager.Extensions
 {
@@ -21,6 +17,7 @@ namespace MudBlazor.ThemeManager.Extensions
                     hexStr = valueElement.GetString() ?? string.Empty;
                 }
             }
+
             return new MudColor(hexStr);
         }
 

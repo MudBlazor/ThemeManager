@@ -11,21 +11,21 @@
         <MudDivider Class="my-2" />
         <div class="pt-2 px-4">
             <MudText Typo="Typo.h6" Class="mb-4">Custom Settings</MudText>
-            <MudSelect Label="Drawer ClipMode" T="DrawerClipMode" Value="@Theme.DrawerClipMode" ValueChanged="OnDrawerClipMode" Dense="true" DisableUnderLine="true" Class="my-2">
+            <MudSelect Label="Drawer ClipMode" T="DrawerClipMode" Value="@Theme.DrawerClipMode" ValueChanged="OnDrawerClipModeAsync" Dense="true" DisableUnderLine="true" Class="my-2">
                 <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Never">Never</MudSelectItem>
                 <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Docked">Docked</MudSelectItem>
                 <MudSelectItem T="DrawerClipMode" Value="DrawerClipMode.Always">Always</MudSelectItem>
             </MudSelect>
-            <MudSelect Label="Font Family" T="string" Value="@Theme.FontFamily" ValueChanged="OnFontFamily" Dense="true" DisableUnderLine="true" Class="my-2">
+            <MudSelect Label="Font Family" T="string" Value="@Theme.FontFamily" ValueChanged="OnFontFamilyAsync" Dense="true" DisableUnderLine="true" Class="my-2">
                 <MudSelectItem T="string" Value="@("Roboto")" />
                 <MudSelectItem T="string" Value="@("Montserrat")" />
                 <MudSelectItem T="string" Value="@("Segoe UI")" />
                 <MudSelectItem T="string" Value="@("Ubuntu")" />
             </MudSelect>
-            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadius" Class="mt-3"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
-            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.AppBarElevation" ValueChanged="OnAppBarElevation"><MudText Typo="Typo.body2">AppBar Elevation: <b>@($"{@Theme.AppBarElevation}")</b></MudText></MudSlider>
-            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DrawerElevation" ValueChanged="OnDrawerElevation"><MudText Typo="Typo.body2">Drawer Elevation: <b>@($"{@Theme.DrawerElevation}")</b></MudText></MudSlider>
-            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DefaultElevation" ValueChanged="OnDefaultElevation"><MudText Typo="Typo.body2">Default Elevation: <b>@($"{@Theme.DefaultElevation}")</b></MudText></MudSlider>
+            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DefaultBorderRadius" ValueChanged="OnDefaultBorderRadiusAsync" Class="mt-3"><MudText Typo="Typo.body2">Border Radius: <b>@($"{@Theme.DefaultBorderRadius}px")</b></MudText></MudSlider>
+            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.AppBarElevation" ValueChanged="OnAppBarElevationAsync"><MudText Typo="Typo.body2">AppBar Elevation: <b>@($"{@Theme.AppBarElevation}")</b></MudText></MudSlider>
+            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DrawerElevation" ValueChanged="OnDrawerElevationAsync"><MudText Typo="Typo.body2">Drawer Elevation: <b>@($"{@Theme.DrawerElevation}")</b></MudText></MudSlider>
+            <MudSlider Step="1" Min="0" Max="25" T="int" Value="@Theme.DefaultElevation" ValueChanged="OnDefaultElevationAsync"><MudText Typo="Typo.body2">Default Elevation: <b>@($"{@Theme.DefaultElevation}")</b></MudText></MudSlider>
         </div>
         <div class="pt-6">
             <MudText Typo="Typo.body2" GutterBottom="true" Class="mx-4 mb-4"><b>Theme Colors</b></MudText>
@@ -65,5 +65,5 @@
             <MudThemeManagerColorItem Name="Surface" ThemeColor="@_customTheme.Palette.Surface" ColorType="ThemePaletteColor.Surface" ColorPickerView="ColorPickerView" />
         </div>
     </MudDrawer>
-    <MudOverlay @bind-Visible="Open" OnClick="@UpdateOpenValue" DarkBackground="false" />
+    <MudOverlay @bind-Visible="Open" OnClick="@UpdateOpenValueAsync" DarkBackground="false" />
 </CascadingValue>

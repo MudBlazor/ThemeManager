@@ -1,5 +1,4 @@
-﻿
-namespace MudBlazor.ThemeManager
+﻿namespace MudBlazor.ThemeManager
 {
     public class ThemeManagerTheme
     {
