@@ -1,0 +1,69 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="_themeManager.AppBarElevation">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Color="Color.Inherit" OnClick="@((e) => DarkModeToggle())" Edge="Edge.End" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="_themeManager.DrawerClipMode" Elevation="_themeManager.DrawerElevation">
+        <MudText Typo="Typo.h6" Class="px-4 pt-2">Theme Manager</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Test Application</MudText>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-16 px-16">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <MudThemeManagerButton OnClick="@((e) => OpenThemeManager(true))" />
+    <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" IsDarkMode="@_isDarkMode" />
+</MudLayout>
+
+
+
+@code {
+    private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
+    private MudThemeProvider _mudThemeProvider;
+
+    private bool _isDarkMode;
+    public bool _drawerOpen = true;
+    public bool _themeManagerOpen = false;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    void OpenThemeManager(bool value)
+    {
+        _themeManagerOpen = value;
+    }
+
+    void DarkModeToggle()
+    {
+        _isDarkMode = !_isDarkMode;
+        _mudThemeProvider.IsDarkMode = _isDarkMode;
+        StateHasChanged();
+    }
+
+    void UpdateTheme(ThemeManagerTheme value)
+    {
+        _themeManager = value;
+        _mudThemeProvider.Theme = _themeManager.Theme;
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            StateHasChanged();
+        }
+    }
+}

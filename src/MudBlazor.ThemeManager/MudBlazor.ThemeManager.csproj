@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Company>MudBlazor</Company>
+    <Authors>Garderoben, Henon and Contributors</Authors>
+    <Copyright>Copyright 2020-2024 Jonny Larsson</Copyright>
+    <Description>ThemeManager component for MudBlazor to design, test or do live changes to Mudblazor themes.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageProjectUrl>https://mudblazor.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Garderoben/MudBlazor</RepositoryUrl>
+    <PackageTags>Blazor, MudBlazor, Material, Material Design, Components, Blazor Components, Blazor Library</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Nuget.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\content\$(PackageIcon)">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\$(PackageReadmeFile)">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.16" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MudBlazor" Version="6.2.3" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.139">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+</Project>
