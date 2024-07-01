@@ -1,9 +1,8 @@
-﻿namespace MudBlazor.ThemeManager
-{
-    public class ThemeUpdatedValue
-    {
-        public string ColorStringValue { get; set; }
+﻿namespace MudBlazor.ThemeManager;
 
-        public ThemePaletteColor ThemePaletteColor { get; set; }
-    }
+public class ThemeUpdatedValue
+{
+    public string ColorStringValue { get; set; }
+
+    public ThemePaletteColor ThemePaletteColor { get; set; }
 }
