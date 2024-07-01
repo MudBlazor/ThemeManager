@@ -2,7 +2,7 @@
 {
     public class ThemeManagerTheme
     {
-        public MudTheme Theme { get; set; } = new MudTheme();
+        public MudTheme Theme { get; set; } = new();
 
         public bool RTL { get; set; }
 

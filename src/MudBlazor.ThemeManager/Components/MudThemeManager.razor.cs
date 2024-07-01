@@ -1,13 +1,31 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor.State;
 using MudBlazor.ThemeManager.Extensions;
 
 namespace MudBlazor.ThemeManager
 {
-    public partial class MudThemeManager
+    public partial class MudThemeManager : ComponentBaseWithState
     {
-        private bool _isDarkMode;
-        private Palette? _currentPaletteDark;
-        private Palette? _currentPaletteLight;
+        private static readonly PaletteLight DefaultPaletteLight = new();
+        private static readonly PaletteDark DefaultPaletteDark = new();
+        private readonly ParameterState<bool> _openState;
+        private readonly ParameterState<bool> _isDarkModeState;
+
+        private PaletteDark? _currentPaletteDark;
+        private PaletteLight? _currentPaletteLight;
+        private Palette _currentPalette;
+
+        public MudThemeManager()
+        {
+            using var registerScope = CreateRegisterScope();
+            _openState = registerScope.RegisterParameter<bool>(nameof(Open))
+                .WithParameter(() => Open)
+                .WithEventCallback(() => OpenChanged);
+            _isDarkModeState = registerScope.RegisterParameter<bool>(nameof(IsDarkMode))
+                .WithParameter(() => IsDarkMode)
+                .WithChangeHandler(OnIsDarkModeChanged);
+            _currentPalette = GetPalette();
+        }
 
         public static MudTheme? _customTheme { get; set; }
 
@@ -23,21 +41,7 @@ namespace MudBlazor.ThemeManager
         public ThemeManagerTheme? Theme { get; set; }
 
         [Parameter]
-        public bool IsDarkMode
-        {
-            get
-            {
-                return _isDarkMode;
-            }
-            set
-            {
-                _isDarkMode = value;
-                if (_customTheme != null)
-                {
-                    UpdateCustomTheme();
-                }
-            }
-        }
+        public bool IsDarkMode { get; set; }
 
         [Parameter]
         public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
@@ -49,13 +53,15 @@ namespace MudBlazor.ThemeManager
         {
             base.OnInitialized();
 
+            _currentPalette = GetPalette();
+
             if (Theme is null)
             {
                 return;
             }
 
             _customTheme = Theme.Theme.DeepClone();
-            _currentPaletteLight = Theme.Theme.Palette.DeepClone();
+            _currentPaletteLight = Theme.Theme.PaletteLight.DeepClone();
             _currentPaletteDark = Theme.Theme.PaletteDark.DeepClone();
         }
 
@@ -73,7 +79,7 @@ namespace MudBlazor.ThemeManager
                 return Task.CompletedTask;
             }
 
-            var newPalette = _customTheme.Palette;
+            Palette newPalette = _isDarkModeState.Value ? _customTheme.PaletteDark : _customTheme.PaletteLight;
 
             switch (value.ThemePaletteColor)
             {
@@ -107,8 +113,8 @@ namespace MudBlazor.ThemeManager
                 case ThemePaletteColor.Background:
                     newPalette.Background = value.ColorStringValue;
                     break;
-                case ThemePaletteColor.BackgroundGrey:
-                    newPalette.BackgroundGrey = value.ColorStringValue;
+                case ThemePaletteColor.BackgroundGray:
+                    newPalette.BackgroundGray = value.ColorStringValue;
                     break;
                 case ThemePaletteColor.DrawerText:
                     newPalette.DrawerText = value.ColorStringValue;
@@ -157,32 +163,43 @@ namespace MudBlazor.ThemeManager
                     break;
 
             }
-            _customTheme.Palette = newPalette;
-            if (IsDarkMode)
+
+            if (_isDarkModeState.Value)
             {
-                _currentPaletteDark = _customTheme.Palette;
-                Theme.Theme.PaletteDark = _customTheme.Palette;
+                _customTheme.PaletteDark = (PaletteDark)newPalette;
             }
             else
             {
-                _currentPaletteLight = _customTheme.Palette;
-                Theme.Theme.Palette = _customTheme.Palette;
+                _customTheme.PaletteLight = (PaletteLight)newPalette;
+            }
+            if (_isDarkModeState.Value)
+            {
+                _currentPaletteDark = _customTheme.PaletteDark;
+                Theme.Theme.PaletteDark = _customTheme.PaletteDark;
+            }
+            else
+            {
+                _currentPaletteLight = _customTheme.PaletteLight;
+                Theme.Theme.PaletteLight = _customTheme.PaletteLight;
             }
 
             return UpdateThemeChangedAsync();
         }
 
-        private Task UpdateOpenValueAsync()
-        {
-            Open = false;
-
-            return OpenChanged.InvokeAsync(false);
-        }
+        private Task UpdateOpenValueAsync() => _openState.SetValueAsync(false);
 
         private async Task UpdateThemeChangedAsync()
         {
             await ThemeChanged.InvokeAsync(Theme);
             StateHasChanged();
+        }
+
+        private void OnIsDarkModeChanged(ParameterChangedEventArgs<bool> arg)
+        {
+            if (_customTheme is not null)
+            {
+                UpdateCustomTheme();
+            }
         }
 
         private Task OnDrawerClipModeAsync(DrawerClipMode value)
@@ -310,10 +327,22 @@ namespace MudBlazor.ThemeManager
             {
                 return;
             }
+            
+            if (_currentPaletteLight is not null)
+            {
+                _customTheme.PaletteLight = _currentPaletteLight;
+            }
 
-            _customTheme.Palette = IsDarkMode
-                ? _currentPaletteDark
-                : _currentPaletteLight;
+            if (_currentPaletteDark is not null)
+            {
+                _customTheme.PaletteDark = _currentPaletteDark;
+            }
+
+            _currentPalette = GetPalette();
         }
+
+        private Palette GetPalette() => _isDarkModeState.Value
+            ? _currentPaletteDark ?? DefaultPaletteDark
+            : _currentPaletteLight ?? DefaultPaletteLight;
     }
 }

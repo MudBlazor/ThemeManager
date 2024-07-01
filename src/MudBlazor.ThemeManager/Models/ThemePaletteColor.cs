@@ -12,7 +12,7 @@
         Dark,
         Surface,
         Background,
-        BackgroundGrey,
+        BackgroundGray,
         DrawerText,
         DrawerIcon,
         DrawerBackground,
