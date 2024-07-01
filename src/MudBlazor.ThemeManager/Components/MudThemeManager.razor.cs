@@ -327,7 +327,7 @@ namespace MudBlazor.ThemeManager
             {
                 return;
             }
-            
+
             if (_currentPaletteLight is not null)
             {
                 _customTheme.PaletteLight = _currentPaletteLight;
