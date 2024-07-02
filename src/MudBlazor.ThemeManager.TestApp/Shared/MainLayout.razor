@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" />
+<MudThemeProvider @ref="@_mudThemeProvider" Theme="_themeManager.Theme" @bind-IsDarkMode="@_isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -46,14 +46,12 @@
     private void DarkModeToggle()
     {
         _isDarkMode = !_isDarkMode;
-        _mudThemeProvider.IsDarkMode = _isDarkMode;
         StateHasChanged();
     }
 
     private void UpdateTheme(ThemeManagerTheme value)
     {
         _themeManager = value;
-        _mudThemeProvider.Theme = _themeManager.Theme;
         StateHasChanged();
     }
 

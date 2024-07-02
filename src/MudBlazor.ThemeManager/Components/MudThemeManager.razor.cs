@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor.State;
 using MudBlazor.ThemeManager.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MudBlazor.ThemeManager;
 
@@ -11,9 +12,10 @@ public partial class MudThemeManager : ComponentBaseWithState
     private readonly ParameterState<bool> _openState;
     private readonly ParameterState<bool> _isDarkModeState;
 
-    private PaletteDark? _currentPaletteDark;
     private PaletteLight? _currentPaletteLight;
+    private PaletteDark? _currentPaletteDark;
     private Palette _currentPalette;
+    private MudTheme? _customTheme;
 
     public MudThemeManager()
     {
@@ -26,8 +28,6 @@ public partial class MudThemeManager : ComponentBaseWithState
             .WithChangeHandler(OnIsDarkModeChanged);
         _currentPalette = GetPalette();
     }
-
-    public static MudTheme? _customTheme { get; set; }
 
     public string ThemePresets { get; set; } = "Not Implemented";
 
@@ -49,6 +49,7 @@ public partial class MudThemeManager : ComponentBaseWithState
     [Parameter]
     public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -69,12 +70,7 @@ public partial class MudThemeManager : ComponentBaseWithState
     {
         UpdateCustomTheme();
 
-        if (Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        if (_customTheme is null)
+        if (Theme is null || _customTheme is null)
         {
             return Task.CompletedTask;
         }
@@ -239,12 +235,7 @@ public partial class MudThemeManager : ComponentBaseWithState
 
     private Task OnDefaultElevationAsync(int value)
     {
-        if (Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        if (_customTheme is null)
+        if (Theme is null || _customTheme is null)
         {
             return Task.CompletedTask;
         }
@@ -287,12 +278,7 @@ public partial class MudThemeManager : ComponentBaseWithState
 
     private Task OnFontFamilyAsync(string value)
     {
-        if (Theme is null)
-        {
-            return Task.CompletedTask;
-        }
-
-        if (_customTheme is null)
+        if (Theme is null || _customTheme is null)
         {
             return Task.CompletedTask;
         }
