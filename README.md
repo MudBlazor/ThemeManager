@@ -5,6 +5,7 @@
     <img alt="MudBlazor" src="content/MudBlazor-GitHub-NoBg.png">
   </picture>
 </h1>
+
 # Theme Manager / Generator for MudBlazor
 
 [![GitHub](https://img.shields.io/github/license/garderoben/mudblazor?color=594ae2&style=flat-square&logo=github)](https://github.com/Garderoben/MudBlazor.ThemeManager/blob/master/LICENSE)
