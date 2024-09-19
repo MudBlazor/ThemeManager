@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor.State;
 using MudBlazor.ThemeManager.Extensions;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MudBlazor.ThemeManager;
 
@@ -49,7 +48,6 @@ public partial class MudThemeManager : ComponentBaseWithState
     [Parameter]
     public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
     protected override void OnInitialized()
     {
         base.OnInitialized();
