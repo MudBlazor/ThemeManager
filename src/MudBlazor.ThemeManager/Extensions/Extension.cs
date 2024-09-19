@@ -78,7 +78,6 @@ internal static class Extension
             Array.Copy(baseTypography.FontFamily, fontFamilyCloned, baseTypography.FontFamily.Length);
         }
 
-
         var fontWeightCloned = baseTypography.FontWeight;
         var fontSizeCloned = baseTypography.FontSize;
         var lineHeightCloned = baseTypography.LineHeight;

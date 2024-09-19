@@ -23,7 +23,7 @@
     <Description>ThemeManager component for MudBlazor to design, test or do live changes to Mudblazor themes.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageProjectUrl>https://mudblazor.com/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Garderoben/MudBlazor</RepositoryUrl>
+    <RepositoryUrl>https://github.com/MudBlazor/ThemeManager</RepositoryUrl>
     <PackageTags>Blazor, MudBlazor, Material, Material Design, Components, Blazor Components, Blazor Library</PackageTags>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>Nuget.png</PackageIcon>
