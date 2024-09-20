@@ -1,4 +1,11 @@
-# ![MudBlazor](content/MudBlazor-GitHub-NoBg.png)
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="content/MudBlazor-GitHub-NoBg-Dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="content/MudBlazor-GitHub-NoBg.png">
+    <img alt="MudBlazor" src="content/MudBlazor-GitHub-NoBg.png">
+  </picture>
+</h1>
+
 # Theme Manager / Generator for MudBlazor
 
 [![GitHub](https://img.shields.io/github/license/garderoben/mudblazor?color=594ae2&style=flat-square&logo=github)](https://github.com/Garderoben/MudBlazor.ThemeManager/blob/master/LICENSE)
@@ -8,13 +15,13 @@
 
 Blazor Theme Manager component for MudBlazor library. Can be used live or during development to fast and easy try out different theme settings.
 
-**This component is not suitable for prod applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
+**This component is currently not suitable for production applications, be ready for performance issues, bugs and missing features. Feel free to help improve it.**
 
 ## Workflow
 ![caption](content/WorkFlow_DarkTheme.webp)
 
 ## Prerequisites
-- [MudBlazor](https://mudblazor.com/) Installed and configurated.
+- [MudBlazor](https://www.mudblazor.com/getting-started/installation) Installed and configurated.
 ## Installation
 Install Package
 ```
@@ -24,7 +31,7 @@ Add the following to `_Imports.razor`
 ```razor
 @using MudBlazor.ThemeManager
 ```
-Add the following to `index.html` (client-side) or `_Host.cshtml` (server-side) in the `head`
+Add the following to your HTML `head` section, it's either `index.html` or `_Layout.cshtml`/`_Host.cshtml`/`App.razor` depending on whether you're running WebAssembly or Server.
 ```razor
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
