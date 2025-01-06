@@ -1,47 +1,74 @@
-﻿@inherits LayoutComponentBase
+﻿@using MudBlazor.ThemeManager.TestApp.MudThemePresets
+@inherits LayoutComponentBase
 
-<MudThemeProvider @ref="@_mudThemeProvider" Theme="_themeManager.Theme" @bind-IsDarkMode="@_isDarkMode" />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode"
+                  @ref="@_mudThemeProvider"
+                  Theme="_themeManager.Theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="_themeManager.AppBarElevation">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+    <MudAppBar Elevation="_themeManager.AppBarElevation" >
+        <MudIconButton Color="Color.Inherit"
+                       Edge="Edge.Start"
+                       Icon="@Icons.Material.Filled.Menu"
+                       OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.DarkMode" Color="Color.Inherit" OnClick="@((e) => DarkModeToggle())" Edge="Edge.End" />
+        <MudIconButton Color="Color.Inherit"
+                       Edge="Edge.End"
+                       Icon="@Icons.Material.Filled.DarkMode"
+                       OnClick="@((e) => DarkModeToggle())" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="_themeManager.DrawerClipMode" Elevation="_themeManager.DrawerElevation">
-        <MudText Typo="Typo.h6" Class="px-4 pt-2">Theme Manager</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Test Application</MudText>
+    <MudDrawer @bind-Open="_drawerOpen"
+               ClipMode="_themeManager.DrawerClipMode"
+               Elevation="_themeManager.DrawerElevation" >
+        <MudText Class="px-4 pt-2"
+                 Typo="Typo.h6" >
+            Theme Manager
+        </MudText>
+        <MudText Class="px-4 mud-text-secondary"
+                 Typo="Typo.body2" >
+            Test Application
+        </MudText>
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.False" Class="mt-16 px-16">
+        <MudContainer Class="mt-16 px-16"
+                      MaxWidth="MaxWidth.False" >
             @Body
         </MudContainer>
     </MudMainContent>
     <MudThemeManagerButton OnClick="@((e) => OpenThemeManager(true))" />
-    <MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" IsDarkMode="@_isDarkMode" />
+    <MudThemeManager IsDarkMode="@_isDarkMode"
+                     Open="_themeManagerOpen"
+                     OpenChanged="OpenThemeManager"
+                     Theme="_themeManager"
+                     ThemeChanged="UpdateTheme"
+                     ThemePresets="_themePresets" />
 </MudLayout>
 
 @code {
     private ThemeManagerTheme _themeManager = new();
     private MudThemeProvider _mudThemeProvider;
+    private IEnumerable<IThemePreset>? _themePresets;
 
     private bool _isDarkMode;
     private bool _drawerOpen = true;
     private bool _themeManagerOpen;
+
 
     private void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
 
+
     private void OpenThemeManager(bool value)
     {
         _themeManagerOpen = value;
     }
+
 
     private void DarkModeToggle()
     {
@@ -49,11 +76,13 @@
         StateHasChanged();
     }
 
+
     private void UpdateTheme(ThemeManagerTheme value)
     {
         _themeManager = value;
         StateHasChanged();
     }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -62,6 +91,13 @@
             _isDarkMode = await _mudThemeProvider.GetSystemPreference();
             StateHasChanged();
         }
+
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+
+    protected override void OnInitialized()
+    {
+        _themePresets = [new CustomThemePreset01(), new CustomThemePreset02()];
     }
 }

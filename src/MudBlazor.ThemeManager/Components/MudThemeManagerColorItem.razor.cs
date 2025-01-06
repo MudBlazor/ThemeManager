@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor.Utilities;
 
+
 namespace MudBlazor.ThemeManager;
+
 
 public partial class MudThemeManagerColorItem : ComponentBase
 {
-    private bool _isOpen;
-    private bool _shouldRender;
-
-    [CascadingParameter]
-    protected MudThemeManager ThemeManager { get; set; } = null!;
-
     [Parameter]
     public string? Name { get; set; }
+
+    [Parameter]
+    public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
 
     [Parameter]
     public MudColor? ThemeColor { get; set; }
@@ -20,8 +19,21 @@ public partial class MudThemeManagerColorItem : ComponentBase
     [Parameter]
     public ThemePaletteColor ColorType { get; set; }
 
-    [Parameter]
-    public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
+    [CascadingParameter]
+    protected bool ForceRender { get; set; }
+
+    [CascadingParameter]
+    protected MudThemeManager ThemeManager { get; set; } = null!;
+
+    private bool _isOpen;
+    private bool _shouldRender;
+
+
+    protected override bool ShouldRender()
+    {
+        return ForceRender || _shouldRender;
+    }
+
 
     public void ToggleOpen()
     {
@@ -37,16 +49,11 @@ public partial class MudThemeManagerColorItem : ComponentBase
         }
     }
 
-    protected override bool ShouldRender() => _shouldRender;
 
     public Task UpdateColor(MudColor value)
     {
         ThemeColor = value;
-        var newPaletteColor = new ThemeUpdatedValue
-        {
-            ColorStringValue = value.ToString(),
-            ThemePaletteColor = ColorType
-        };
+        var newPaletteColor = new ThemeUpdatedValue { ColorStringValue = value.ToString(), ThemePaletteColor = ColorType };
 
         return ThemeManager.UpdatePalette(newPaletteColor);
     }
