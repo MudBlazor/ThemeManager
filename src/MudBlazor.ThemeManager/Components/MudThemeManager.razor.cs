@@ -220,7 +220,9 @@ public partial class MudThemeManager : ComponentBaseWithState
     {
         if (_customTheme is not null)
         {
+            _forceColorRender = true;
             UpdateCustomTheme();
+            StateHasChanged();
         }
     }
 
