@@ -38,6 +38,11 @@ jobs:
           build-mode: manual
 
     steps:
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          9.0.x
     - name: Checkout repository
       uses: actions/checkout@v4
       with:

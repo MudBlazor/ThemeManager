@@ -2,7 +2,7 @@
 
 namespace MudBlazor.ThemeManager.Extensions;
 
-//[JsonSerializable(typeof(MudTheme))] TODO: Needs this to be done https://github.com/MudBlazor/MudBlazor/pull/9434 rest can be removed after
+[JsonSerializable(typeof(MudTheme))]
 [JsonSerializable(typeof(Shadow))]
 [JsonSerializable(typeof(LayoutProperties))]
 [JsonSerializable(typeof(ZIndex))]
