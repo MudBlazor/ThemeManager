@@ -52,8 +52,6 @@ public partial class MudThemeManager : ComponentBaseWithState
     {
         base.OnInitialized();
 
-        _currentPalette = GetPalette();
-
         if (Theme is null)
         {
             return;
@@ -62,6 +60,7 @@ public partial class MudThemeManager : ComponentBaseWithState
         _customTheme = Theme.Theme.DeepClone();
         _currentPaletteLight = Theme.Theme.PaletteLight.DeepClone();
         _currentPaletteDark = Theme.Theme.PaletteDark.DeepClone();
+        _currentPalette = GetPalette();
     }
 
     public Task UpdatePalette(ThemeUpdatedValue value)
