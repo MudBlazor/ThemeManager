@@ -6,7 +6,6 @@ namespace MudBlazor.ThemeManager;
 public partial class MudThemeManagerColorItem : ComponentBase
 {
     private bool _isOpen;
-    private bool _shouldRender;
 
     [CascadingParameter]
     protected MudThemeManager ThemeManager { get; set; } = null!;
@@ -25,19 +24,8 @@ public partial class MudThemeManagerColorItem : ComponentBase
 
     public void ToggleOpen()
     {
-        if (_isOpen)
-        {
-            _isOpen = false;
-            _shouldRender = false;
-        }
-        else
-        {
-            _isOpen = true;
-            _shouldRender = true;
-        }
+        _isOpen = !_isOpen;
     }
-
-    protected override bool ShouldRender() => _shouldRender;
 
     public Task UpdateColor(MudColor value)
     {
