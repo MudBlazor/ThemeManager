@@ -35,12 +35,13 @@ Add the following to your HTML `head` section, it's either `index.html` or `_Lay
 Add the components in your `MainLayout.razor` and inside `<MudLayout>`
 ```razor
 <MudThemeManagerButton OnClick="@((e) => OpenThemeManager(true))" />
-<MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" />
+<MudThemeManager Open="_themeManagerOpen" OpenChanged="OpenThemeManager" Theme="_themeManager" ThemeChanged="UpdateTheme" IsDarkMode="@_isDarkMode" />
 ```
 Add the following inside your @code for `MainLayout.razor`
 ```razor
 private ThemeManagerTheme _themeManager = new ThemeManagerTheme();
-public bool _themeManagerOpen = false;
+private bool _themeManagerOpen = false;
+private bool _isDarkMode;
 
 void OpenThemeManager(bool value)
 {
@@ -58,6 +59,14 @@ protected override void OnInitialized()
     StateHasChanged();
 }
 ```
+## Dark Mode Support
+If you need dark mode support, make sure to bind the `IsDarkMode` parameter to a variable that controls whether your application is in dark mode. This allows the Theme Manager to adjust and display the appropriate palette (light or dark) when you're customizing themes.
+
+The `_isDarkMode` variable should be synchronized with your `MudThemeProvider`'s `IsDarkMode` to ensure consistent dark mode behavior across your application:
+```razor
+<MudThemeProvider Theme="_themeManager.Theme" @bind-IsDarkMode="@_isDarkMode" />
+```
+
 Connect the ThemeManagerTheme with `MudThemeProvider` to control all the theme colors. You can also connect `MudAppBar` and `MudDrawer` directly.
 ```html
 <MudThemeProvider Theme="_themeManager.Theme" />
