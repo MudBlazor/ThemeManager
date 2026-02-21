@@ -11,8 +11,8 @@ public partial class MudThemeManager : ComponentBaseWithState
     private readonly ParameterState<bool> _openState;
     private readonly ParameterState<bool> _isDarkModeState;
 
-    private PaletteLight? _currentPaletteLight;
-    private PaletteDark? _currentPaletteDark;
+    private Palette? _currentPaletteLight;
+    private Palette? _currentPaletteDark;
     private Palette _currentPalette;
     private MudTheme? _customTheme;
 
@@ -159,11 +159,11 @@ public partial class MudThemeManager : ComponentBaseWithState
 
         if (_isDarkModeState.Value)
         {
-            _customTheme.PaletteDark = (PaletteDark)newPalette;
+            _customTheme.PaletteDark = newPalette;
         }
         else
         {
-            _customTheme.PaletteLight = (PaletteLight)newPalette;
+            _customTheme.PaletteLight = newPalette;
         }
         if (_isDarkModeState.Value)
         {
