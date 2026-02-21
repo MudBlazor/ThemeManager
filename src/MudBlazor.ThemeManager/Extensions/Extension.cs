@@ -16,6 +16,8 @@ internal static class Extension
         return copyObj ?? new MudTheme();
     }
 
+    public static Palette? DeepClone(this Palette source) => DeepClonePalette(source);
+
     public static PaletteDark? DeepClone(this PaletteDark source) => DeepClonePalette(source);
 
     public static PaletteLight? DeepClone(this PaletteLight source) => DeepClonePalette(source);
