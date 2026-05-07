@@ -46,6 +46,9 @@ public partial class MudThemeManager : ComponentBaseWithState
     public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
 
     [Parameter]
+    public ColorPickerMode ColorPickerMode { get; set; } = ColorPickerMode.RGB;
+
+    [Parameter]
     public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
     protected override void OnInitialized()

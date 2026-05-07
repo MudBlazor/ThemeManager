@@ -22,6 +22,9 @@ public partial class MudThemeManagerColorItem : ComponentBase
     [Parameter]
     public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
 
+    [Parameter]
+    public ColorPickerMode ColorPickerMode { get; set; } = ColorPickerMode.RGB;
+
     public void ToggleOpen()
     {
         _isOpen = !_isOpen;
