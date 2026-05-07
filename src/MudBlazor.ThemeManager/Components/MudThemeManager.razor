@@ -5,9 +5,21 @@
     <MudDrawer @bind-Open:get="_openState.Value" @bind-Open:set="_openState.SetValueAsync" Anchor="Anchor.End" Elevation="25" Variant="@DrawerVariant.Temporary" Overlay="false" Width="312px">
         <div class="pt-4 px-4">
             <MudText Typo="Typo.h6">Theme Presets</MudText>
-            <MudSelect T="string" @bind-Value="@ThemePresets" Disabled="true" Underline="false">
-                <MudSelectItem Value="@("Not Implemented")" />
-            </MudSelect>
+            @if (Presets is null)
+            {
+                <MudSelect T="string" @bind-Value="@ThemePresets" Disabled="true" Underline="false">
+                    <MudSelectItem Value="@("Not Implemented")" />
+                </MudSelect>
+            }
+            else
+            {
+                <MudSelect T="ThemeManagerTheme" Value="Theme" ValueChanged="OnPresetSelectedAsync" Underline="false">
+                    @foreach (var preset in Presets)
+                    {
+                        <MudSelectItem Value="@preset">@(preset.Name ?? "(unnamed)")</MudSelectItem>
+                    }
+                </MudSelect>
+            }
         </div>
         <MudDivider Class="my-2" />
         <div class="pt-2 px-4">

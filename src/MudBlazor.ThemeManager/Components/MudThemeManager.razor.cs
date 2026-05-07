@@ -15,6 +15,7 @@ public partial class MudThemeManager : ComponentBaseWithState
     private Palette? _currentPaletteDark;
     private Palette _currentPalette;
     private MudTheme? _customTheme;
+    private ThemeManagerTheme? _previousTheme;
 
     public MudThemeManager()
     {
@@ -46,13 +47,29 @@ public partial class MudThemeManager : ComponentBaseWithState
     public ColorPickerView ColorPickerView { get; set; } = ColorPickerView.Spectrum;
 
     [Parameter]
+    public IEnumerable<ThemeManagerTheme>? Presets { get; set; }
+
+    [Parameter]
+    public EventCallback<ThemeManagerTheme> PresetSelected { get; set; }
+
+    [Parameter]
     public EventCallback<ThemeManagerTheme> ThemeChanged { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
+        SyncWithTheme();
+    }
 
-        if (Theme is null)
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        SyncWithTheme();
+    }
+
+    private void SyncWithTheme()
+    {
+        if (Theme is null || ReferenceEquals(Theme, _previousTheme))
         {
             return;
         }
@@ -61,7 +78,10 @@ public partial class MudThemeManager : ComponentBaseWithState
         _currentPaletteLight = Theme.Theme.PaletteLight.DeepClone();
         _currentPaletteDark = Theme.Theme.PaletteDark.DeepClone();
         _currentPalette = GetPalette();
+        _previousTheme = Theme;
     }
+
+    private Task OnPresetSelectedAsync(ThemeManagerTheme value) => PresetSelected.InvokeAsync(value);
 
     public Task UpdatePalette(ThemeUpdatedValue value)
     {

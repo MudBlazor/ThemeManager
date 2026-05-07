@@ -2,6 +2,8 @@
 
 public class ThemeManagerTheme
 {
+    public string? Name { get; set; }
+
     public MudTheme Theme { get; set; } = new();
 
     public bool RTL { get; set; }
