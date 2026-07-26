@@ -31,9 +31,14 @@ jobs:
       - name: Pack
         run: dotnet pack MudBlazor.ThemeManager.slnx --configuration Release --output artifacts/packages
       - name: 'Push: nuget.org'
-        run: dotnet nuget push "artifacts/packages/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }} --skip-duplicate
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push "artifacts/packages/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "$NUGET_KEY" --skip-duplicate
       - name: 'Push: GitHub Packages'
-        run: dotnet nuget push "artifacts/packages/*.nupkg" --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_SOURCE: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        run: dotnet nuget push "artifacts/packages/*.nupkg" --source "$NUGET_SOURCE" --api-key "$GITHUB_TOKEN" --skip-duplicate
       - name: 'Publish: packages'
         uses: actions/upload-artifact@v4
         with:
