@@ -19,7 +19,7 @@
     <IsPackable>true</IsPackable>
     <Company>MudBlazor</Company>
     <Authors>Garderoben, Henon and Contributors</Authors>
-    <Copyright>Copyright 2021 MudBlazor</Copyright>
+    <Copyright>Copyright 2026 MudBlazor</Copyright>
     <Description>ThemeManager component for MudBlazor to design, test or do live changes to Mudblazor themes.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageProjectUrl>https://mudblazor.com/</PackageProjectUrl>
