@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Group non-major NuGet updates into a single PR",
+      "matchManagers": ["nuget"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "NuGet packages (non-major)"
+    },
+    {
+      "description": "ASP.NET Core packages are pinned per target framework (net9.0 -> 9.0.x, net10.0 -> 10.0.x); majors must follow a TFM upgrade instead",
+      "matchPackageNames": ["Microsoft.AspNetCore.*"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "MudBlazor majors are breaking for this library; require approval from the dependency dashboard",
+      "matchPackageNames": ["MudBlazor"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Group GitHub Actions updates into a single PR",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    }
+  ]
+}
