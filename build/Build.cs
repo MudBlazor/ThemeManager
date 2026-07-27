@@ -19,7 +19,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     "continuous",
     GitHubActionsImage.UbuntuLatest,
     FetchDepth = 0,
-    On = [GitHubActionsTrigger.Push],
+    OnPushBranches = ["main"],
+    OnPullRequestBranches = ["main"],
     PublishArtifacts = true,
     InvokedTargets = [nameof(Compile), nameof(Pack)])]
 [GitHubActions(
