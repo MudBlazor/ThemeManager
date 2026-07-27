@@ -1,0 +1,13 @@
+﻿@namespace MudBlazor.ThemeManager
+
+<MudOverlay @bind-Visible="_isOpen" AutoClose="true" />
+
+<div class="relative">
+    <div class="mud-list-item-clickable mud-ripple px-4 py-3" @onclick="ToggleOpen">
+        <MudText Typo="Typo.body2" Class="mud-float-left">@Name</MudText>
+        <div style="background:@ThemeColor.ToString();" class="px-8 py-3 mud-float-right rounded mud-elevation-25"></div>
+    </div>
+    <MudPopover Open="@_isOpen" Elevation="25" Square="true" TransformOrigin="Origin.TopCenter" AnchorOrigin="Origin.BottomCenter">
+        <MudColorPicker Class="mud-thememanager-color-picker" PickerVariant="PickerVariant.Static" Elevation="0" ValueChanged="UpdateColor" ColorPickerView="ColorPickerView" />
+    </MudPopover>
+</div>

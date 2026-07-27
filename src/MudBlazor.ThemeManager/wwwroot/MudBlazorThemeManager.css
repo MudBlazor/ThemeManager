@@ -1,0 +1,26 @@
+﻿.mud-thememanager-button {
+    position: fixed;
+    top: 40%;
+    right: 0;
+    box-shadow: 1px 1px 18px #7C4DFF;
+    color: #FFFFFF;
+    background-color: #7C4DFF;
+    cursor: pointer;
+}
+
+.mud-thememanager-button-spin {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
