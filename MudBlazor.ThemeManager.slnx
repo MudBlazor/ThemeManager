@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="src/MudBlazor.ThemeManager/MudBlazor.ThemeManager.csproj" />
   <Project Path="src/MudBlazor.ThemeManager.TestApp/MudBlazor.ThemeManager.TestApp.csproj" />
-  <Project Path="build/_build.csproj" />
 </Solution>
